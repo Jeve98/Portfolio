@@ -18,7 +18,7 @@ layout: default
     </p> -->
     {% if post.period %}
       <ul class="period">
-        <p>{{ post.period | newline_to_br }}</p>
+        <p>{{ post.period }}</p>
       </ul>
     {% endif %}
     {% if post.stack %}
@@ -35,7 +35,7 @@ layout: default
       </div>
     {% endif %}
     <p>{{ post.summary | newline_to_br }}</p>
-    <a href="{{ post.url }}">Read More</a>
+    <a href="{{ site.github.url }}{{ post.url }}">Read More</a>
   </div>
 {% endfor %}
 <!-- Pagination links -->
