@@ -67,6 +67,17 @@
   @include social-media-icon($rss-color, $icon-transition-time);
 }
 
-.tistory-icon {
-  color: #ff5a4a;
+.fa-bold {
+  padding: 5px;
+  color: $tistory-color;
+
+  -webkit-transition: $icon-transition-time;
+  -o-transition: $icon-transition-time;
+  -ms-transition: $icon-transition-time;
+  -moz-transition: $icon-transition-time;
+  transition: $icon-transition-time;
+
+  &:hover {
+    color: $tistory-hover-color;
+  }
 }

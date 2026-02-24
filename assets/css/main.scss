@@ -29,5 +29,7 @@ $pinterest-color:      #bd081c;
 $medium-color:         #00AB6C;
 $codepen-color:        black;
 $rss-color:            #ff6600;
+$tistory-color: #ff5a4a;
+$tistory-hover-color: darken($tistory-color, 8%);
 
 @import "-sections-dir";
