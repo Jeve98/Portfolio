@@ -19,7 +19,7 @@
 
 .fa-envelope {
   padding: 5px;
-  color: $envelope-color;
+  color: $envelope-color !important;
 
   -webkit-transition: $icon-transition-time;
   -o-transition: $icon-transition-time;
