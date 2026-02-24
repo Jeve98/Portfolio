@@ -27,10 +27,13 @@ layout: default
   {% if page.stack %}
     <div class="project-stack">
       {% for tech in page.stack %}
-        <div class="stack-item">
-          <img src="https://cdn.simpleicons.org/{{ tech }}" class="stack-icon">
-          <span>{{ tech | capitalize }}</span>
-        </div>
+        <img 
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ tech }}/{{ tech }}-original.svg" 
+            alt="{{ tech }}" 
+            class="stack-icon"
+            style="width: 28px; height: 28px;"
+            onerror="this.onerror=null; this.src='https://cdn.simpleicons.org/{{ tech }}'; this.onchange=checkError(this);"
+          >
       {% endfor %}
     </div>
   {% endif %}
