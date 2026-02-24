@@ -32,13 +32,11 @@
 
 .video-container {
   position: relative;
-  padding-bottom: 56.25%;
+  width: 100%;
+  max-width: 1024px; /* 기본 이미지 폭과 동일 */
+  margin: 0 auto;
+  padding-bottom: 58.59375%; /* 1024x600 비율 */
   height: 0;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 .video-container iframe {
