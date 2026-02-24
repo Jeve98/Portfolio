@@ -6,6 +6,7 @@ categories: journal
 tags: [documentation, sample]
 youtube: ZeyUP4g3oAY
 image: test.gif
+period: 2024-01-01 ~ 2025-01-01
 stack:
   - unity
   - csharp
