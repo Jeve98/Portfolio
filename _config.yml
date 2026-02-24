@@ -20,8 +20,8 @@ permalink: /:title
 plugins: [jekyll-paginate, jekyll-sitemap, jekyll-feed, jekyll-seo-tag]
 
 # Customise atom feed settings (this is where Jekyll-Feed gets configuration information)
-title: "메인 단어"
-description: "추가 문구"
+title: "Game Development"
+description: "당신의 추억이 될 때까지"
 author: "전연욱"
 
 # RSS 2.0 can be used instead of Atom by uncommenting following two lines
