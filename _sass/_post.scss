@@ -46,8 +46,7 @@
   height: 100%;
 }
 
-.project-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.title-separator {
+  margin: 0 8px;
+  color: #888;
 }
