@@ -34,7 +34,11 @@
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
-  margin: 2rem 0;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .video-container iframe {
