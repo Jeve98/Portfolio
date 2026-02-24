@@ -27,7 +27,10 @@ layout: default
   {% if page.stack %}
     <div class="project-stack">
       {% for tech in page.stack %}
-        <span class="stack-badge">{{ tech }}</span>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/{{ tech }}" class="stack-icon">
+          <span>{{ tech | capitalize }}</span>
+        </div>
       {% endfor %}
     </div>
   {% endif %}

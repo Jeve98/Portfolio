@@ -19,7 +19,10 @@ layout: default
     {% if post.stack %}
       <div class="stack-icons">
         {% for tech in post.stack %}
-          <i class="fab fa-{{ tech }}"></i>
+          <img 
+            src="https://cdn.simpleicons.org/{{ tech }}"
+            alt="{{ tech }}"
+            class="stack-icon">
         {% endfor %}
       </div>
     {% endif %}
