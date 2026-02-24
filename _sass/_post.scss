@@ -30,7 +30,7 @@
   text-decoration: none;
 }
 
-.post-hero-video {
+.video-container {
   position: relative;
   width: 100%;
   max-width: 1024px;
@@ -38,7 +38,7 @@
   padding-bottom: 58.59375%; /* 1024x600 비율 */
 }
 
-.post-hero-video iframe {
+.video-container iframe {
   position: absolute;
   top: 0;
   left: 0;
