@@ -4,6 +4,19 @@ layout: default
 
 <h1>
   {{ page.title }}
+  {% if page.stack %}
+    <div class="project-stack">
+      {% for tech in page.stack %}
+        <img 
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ tech }}/{{ tech }}-original.svg" 
+            alt="{{ tech }}" 
+            class="stack-icon"
+            style="width: 28px; height: 28px;"
+            onerror="this.onerror=null; this.src='https://cdn.simpleicons.org/{{ tech }}'; this.onchange=checkError(this);"
+          >
+      {% endfor %}
+    </div>
+  {% endif %}
 </h1>
 
 {% if page.youtube %}
@@ -24,19 +37,7 @@ layout: default
     <p class="project-period">{{ page.period }}</p>
   {% endif %}
 
-  {% if page.stack %}
-    <div class="project-stack">
-      {% for tech in page.stack %}
-        <img 
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ tech }}/{{ tech }}-original.svg" 
-            alt="{{ tech }}" 
-            class="stack-icon"
-            style="width: 28px; height: 28px;"
-            onerror="this.onerror=null; this.src='https://cdn.simpleicons.org/{{ tech }}'; this.onchange=checkError(this);"
-          >
-      {% endfor %}
-    </div>
-  {% endif %}
+  
 
   {% if page.role %}
     <p class="project-role">
