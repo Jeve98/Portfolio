@@ -19,7 +19,18 @@
 
 .fa-envelope {
   padding: 5px;
-  @include social-media-icon($envelope-color, $icon-transition-time);
+  color: $envelope-color;
+
+  -webkit-transition: $icon-transition-time;
+  -o-transition: $icon-transition-time;
+  -ms-transition: $icon-transition-time;
+  -moz-transition: $icon-transition-time;
+  transition: $icon-transition-time;
+
+  &:hover {
+    color: $envelope-hover-color;
+    transform: scale(1.1);
+  }
 }
 
 .fa-twitter {

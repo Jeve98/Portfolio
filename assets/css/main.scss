@@ -19,7 +19,8 @@ $container-responsive-width: 768px;
 $elements-responsive-width:  30em;
 
 $icon-transition-time: .5s;
-$envelope-color:       #f39c12;
+$envelope-color:       #4285F4;
+$envelope-hover-color: darken($envelope-color, 10%);
 $twitter-color:        #00aced;
 $instagram-color:      #375989;
 $github-color:         #343434;
