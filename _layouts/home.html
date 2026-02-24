@@ -16,6 +16,11 @@ layout: default
       {{ post.content | strip_html | truncate: 350 }} <a href="{{ site.github.url }}{{ post.url }}">Read more</a>
       <span class="post-date"><i class="fas fa-calendar" aria-hidden="true"></i> {{ post.date | date_to_string }} - <i class="fas fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</span>
     </p> -->
+    {% if post.period %}
+      <ul class="period">
+        <p>{{ post.period | newline_to_br }}</p>
+      </ul>
+    {% endif %}
     {% if post.stack %}
       <div class="stack-icons">
         {% for tech in post.stack %}
@@ -28,13 +33,6 @@ layout: default
           >
         {% endfor %}
       </div>
-    {% endif %}
-    {% if post.roles %}
-      <ul class="roles">
-        {% for role in post.roles %}
-          <li>{{ role }}</li>
-        {% endfor %}
-      </ul>
     {% endif %}
     <p>{{ post.summary | newline_to_br }}</p>
     <a href="{{ post.url }}">Read More</a>
