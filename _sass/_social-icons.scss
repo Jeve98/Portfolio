@@ -73,12 +73,12 @@
   @include social-media-icon($codepen-color, $icon-transition-time);
 }
 
-.fa-rss-square {
+.fa-rss {
   padding: 5px;
   @include social-media-icon($rss-color, $icon-transition-time);
 }
 
-.fa-bold {
+.fa-blog {
   padding: 5px;
   color: $tistory-color;
 

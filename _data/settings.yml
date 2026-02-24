@@ -14,13 +14,13 @@ menu:
 # Available social icons are powered by Font Awesome, so you can use any icon that they offer
 social:
   - {
-      icon: "bold",
+      icon: "fas fa-blog",
       link: "https://jadam41817.tistory.com/",
       class: "tistory-icon",
     }
   # - {icon: 'twitter',    link: 'https://twitter.com/paululele'}
   # - {icon: 'linkedin',   link: 'http://www.linkedin.com/in/lenpaul/'}
-  - { icon: "envelope", link: "jadam41817@gmail.com" }
+  - { icon: "fas fa-envelope", link: "mailto:jadam41817@gmail.com" }
 # - {icon: 'rss-square', link: '/feed.xml'}
 # - {icon: 'rss-square', link: '/rss-feed.xml'}
 

@@ -12,10 +12,26 @@ layout: default
         <a href="{{ site.github.url }}{{ post.url }}"><img src="{{ site.github.url }}/assets/img/{{ post.image }}"></a>
       </div>
     {% endif %}
-    <p>
+    <!-- <p>
       {{ post.content | strip_html | truncate: 350 }} <a href="{{ site.github.url }}{{ post.url }}">Read more</a>
-      <span class="post-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.date | date_to_string }} - <i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</span>
-    </p>
+      <span class="post-date"><i class="fas fa-calendar" aria-hidden="true"></i> {{ post.date | date_to_string }} - <i class="fas fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</span>
+    </p> -->
+    {% if post.stack %}
+      <div class="stack-icons">
+        {% for tech in post.stack %}
+          <i class="fab fa-{{ tech }}"></i>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if post.roles %}
+      <ul class="roles">
+        {% for role in post.roles %}
+          <li>{{ role }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <p>{{ post.summary | newline_to_br }}</p>
+    <a href="{{ post.url }}">Read More</a>
   </div>
 {% endfor %}
 <!-- Pagination links -->

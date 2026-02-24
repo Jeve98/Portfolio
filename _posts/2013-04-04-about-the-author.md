@@ -6,6 +6,17 @@ categories: journal
 tags: [documentation, sample]
 youtube: ZeyUP4g3oAY
 image: test.gif
+stack:
+  - unity
+  - csharp
+  - photon
+roles:
+  - Gameplay System
+  - Network Sync
+summary: |
+  - Unity 3D based RPG
+  - Implemented modular state machines
+  - Designed multiplayer logic
 ---
 
 Hi there! I'm Paul. I’m a physics major turned programmer.  
