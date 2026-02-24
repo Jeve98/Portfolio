@@ -32,10 +32,9 @@
 
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; // 16:9
+  padding-bottom: 56.25%;
   height: 0;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
+  margin: 2rem 0;
 }
 
 .video-container iframe {
