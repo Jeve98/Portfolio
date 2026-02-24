@@ -81,3 +81,13 @@
     color: $tistory-hover-color;
   }
 }
+
+.social a[href*="tistory"] {
+  color: $tistory-color;
+  transition: color $icon-transition-time ease, transform $icon-transition-time ease;
+
+  &:hover {
+    color: $tistory-hover-color;
+    transform: scale(1.1);
+  }
+}
