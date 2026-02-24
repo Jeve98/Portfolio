@@ -5,6 +5,7 @@ layout: default
 <h1>
   {{ page.title }}
   {% if page.stack %}
+    <span> | </span>
     <span class="project-stack">
       {% for tech in page.stack %}
         <img 
