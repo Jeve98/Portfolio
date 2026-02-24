@@ -17,9 +17,9 @@ layout: default
       <span class="post-date"><i class="fas fa-calendar" aria-hidden="true"></i> {{ post.date | date_to_string }} - <i class="fas fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</span>
     </p> -->
     {% if post.period %}
-      <ul class="period">
+      <div class="period">
         <p>{{ post.period }}</p>
-      </ul>
+      </div>
     {% endif %}
     {% if post.stack %}
       <div class="stack-icons">
