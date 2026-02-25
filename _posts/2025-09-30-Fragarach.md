@@ -7,7 +7,7 @@ tags: [Phaser, Web_Game, 2D, RPG]
 youtube:
 image:
 period: 2025-09-30 ~ 2025-12-25
-stack: [phaser, django, web]
+stack: [phaser1, django, web]
 summary: |
   - Unity 3D based RPG
   - Implemented modular state machines
