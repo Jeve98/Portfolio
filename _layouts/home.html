@@ -26,12 +26,14 @@ layout: default
           <span class="title-separator"> | </span>
           <span class="stack-icons">
             {% for tech in post.stack %}
+            <span class="icon-wrapper">
               <img 
                 src="{{ site.github.url }}/assets/icons/{{ tech }}.svg" 
                 alt="{{ tech }}" 
                 class="stack-icon"
                 style="width: 22px; height: 22px;"
               >
+            </span>
             {% endfor %}
           </span>
         {% endif %}
