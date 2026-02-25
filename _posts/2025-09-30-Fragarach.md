@@ -9,12 +9,21 @@ image:
 period: 2025-09-30 ~ 2025-12-25
 stack: [phaser, django, web]
 summary: |
-  - Unity 3D based RPG
-  - Implemented modular state machines
-  - Designed multiplayer logic
+  - Min-Heap을 이용한 보스 패턴 구현
+  - 안전 구역 기반 몬스터 스폰 구현
+  - 컷씬 중복 재생 방지 구현
+  - Phaser의 Scene 로드 방식에 맞춘 안전한 Scene 로드 구현
+  - Resource 수신 및 저장을 위한 API 서버 구현 (Django)
 ---
 
-Hi there! I'm Paul. I’m a physics major turned programmer.  
-Ever since I first
+## Min-Heap을 이용한 보스 패턴
 
-learned how to program while taking a scientific computing for physics course, I have pursued programming as a passion, and as a career. Check out [my personal website](https://www.lenpaul.com/) for more information on my other projects (including more Jekyll themes!), as well as some of my writing.
+## 안전 구역 기반 몬스터 스폰
+
+## 컷씬 중복 재생 방지
+
+## 안전한 Scene 로드
+
+Phaser의 경우 한 번에 모든 Scene을 로드
+
+## API
