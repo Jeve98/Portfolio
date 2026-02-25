@@ -71,18 +71,6 @@
 }
 
 .stack-icon {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* 비율 유지하며 상자에 맞춤 */
-  display: block;
-}
-
-.icon-wrapper {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  top: 2px;
 }
