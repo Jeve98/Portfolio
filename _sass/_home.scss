@@ -14,14 +14,24 @@
 
 .thumbnail-container {
   max-width: 100%;
+  /* 기존 1024 * 600에서 상하 11.5%씩 크롭된 최종 비율 유지 */
+  /* 600px - (600 * 0.23) = 462px -> 1024:462 비율 */
+  aspect-ratio: 1024 / 462; 
   overflow: hidden;
   border-radius: 5px;
   margin-bottom: 25px;
+  position: relative;
 }
 
-.thumbnail-container img{
-  margin-top: -11.5%;
-  margin-bottom: -11.5%;
+.thumbnail-container img {
+  width: 100%;
+  height: 100%;
+  /* 핵심: 원본 비율을 유지하며 컨테이너를 가득 채움 */
+  object-fit: cover;
+  /* 이미지의 중심을 기준으로 확대 및 크롭 */
+  object-position: center;
+  
+  /* 기존 margin-top/bottom -11.5%는 삭제합니다. */
 }
 
 /*
