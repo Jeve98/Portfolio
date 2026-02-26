@@ -29,9 +29,9 @@
   /* 핵심: 원본 비율을 유지하며 컨테이너를 가득 채움 */
   object-fit: cover;
   /* 이미지의 중심을 기준으로 확대 및 크롭 */
-  object-position: center;
+  object-position: 50% 50%;
   
-  /* 기존 margin-top/bottom -11.5%는 삭제합니다. */
+  margin: 0;
 }
 
 /*
