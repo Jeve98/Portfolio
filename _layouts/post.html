@@ -18,6 +18,9 @@ layout: default
     </span>
   {% endif %}
 </h1>
+{% if page.period %}
+  <p class="project-period">{{ page.period }}</p>
+{% endif %}
 
 {% if page.youtube %}
   <div class="video-container">
@@ -33,12 +36,6 @@ layout: default
 {% endif %}
 
 <section class="project-header">
-  {% if page.period %}
-    <p class="project-period">{{ page.period }}</p>
-  {% endif %}
-
-  
-
   {% if page.role %}
     <p class="project-role">
       <strong>Role:</strong> {{ page.role }}
