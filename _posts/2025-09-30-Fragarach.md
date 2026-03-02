@@ -106,8 +106,26 @@ export function cooltime(scene, target, cool) {
 
 ### 컷씬 중복 재생 방지 시스템
 
+```
+if ((this.playerStats.cutScene & 1 << 0) == 0) {
+    this.cutscene.play(introScript);
+    this.playerStats.cutScene += (1 << 0);
+}
+else {
+    this.cutsceneLock = false;
+}
+```
+
 ### Phaser 구조 기반 Scene 로딩
 
 Phaser의 경우 한 번에 모든 Scene을 로드
+import 해오는 key가 중복되며 워닝 발생 > 로드 씬을 통한 안전한 데이터 import 이후 위치한 scene으로 이동
 
-## API 서버
+### API 서버
+
+구조 분리 및 데이터 관리 관점에서 작성 (sqlite3의 단점)
+sqlite3 사용 맥락 설명 > 한계 인지 > 대응 방식 (단일 세션 중심)
+
+### 버그 수정
+
+예시 코드가 아닌 특정 기능, 상황에 대한 구조 중심 서술
