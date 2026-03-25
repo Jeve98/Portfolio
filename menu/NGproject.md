@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Planning
-permalink: /planning
+permalink: /NGproject
 ---
 
 {% for post in site.posts %}
