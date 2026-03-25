@@ -9,7 +9,7 @@ google-ID: ""
 menu:
   - { name: "기획", url: "planning.html" }
   - { name: "프로젝트", url: "project.html" }
-  # - { name: "Contact", url: "contact.html" }
+  - { name: "Not Game", url: "NGproject.html" }
 
 # Available social icons are powered by Font Awesome, so you can use any icon that they offer
 social:
