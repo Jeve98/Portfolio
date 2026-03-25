@@ -2,7 +2,7 @@
 layout: post
 title: "프라가라흐"
 author: "전연욱"
-categories: Game_Development
+category: Game_Development
 tags: [Phaser, Web_Game, 2D, RPG]
 youtube: q09cp5137Xc
 image: fragarach_temp.png
