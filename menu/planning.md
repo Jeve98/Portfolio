@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: default
 title: Planning
-permalink: /planning/
+permalink: /planning
 ---
 
 {% for post in site.posts %}

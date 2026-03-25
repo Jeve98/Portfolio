@@ -1,7 +1,7 @@
 ---
-layout: archive
+layout: default
 title: Project
-permalink: /project/
+permalink: /project
 ---
 
 {% for post in site.posts %}
