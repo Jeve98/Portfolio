@@ -32,6 +32,9 @@ permalink: /planning
               {% endfor %}
             </span>
           {% endif %}
+          {% if post.period %}
+            <span class="period-text">{{ post.category }}</span>
+          {% endif %}
         </div>
       {% endif %}
       <p class="post">{{ post.summary | newline_to_br }}</p>
