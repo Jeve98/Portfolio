@@ -22,11 +22,11 @@ permalink: /project
       {% if post.period or post.stack %}
         <div class="period">
           {% if post.period %}
-            <span class="period-text">{{ post.period }}</span>
+            <span class="period-text">게임 프로젝트</span>
           {% endif %}
           {% if post.period %}
             <span class="title-separator"> | </span>
-            <span class="period-text">게임 프로젝트</span>
+            <span class="period-text">{{ post.period }}</span>
           {% endif %}
           {% if post.stack %}
             <span class="title-separator"> | </span>
