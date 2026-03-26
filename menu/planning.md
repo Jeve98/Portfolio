@@ -26,7 +26,7 @@ permalink: /planning
           {% endif %}
           {% if post.period %}
             <span class="title-separator"> | </span>
-            <span class="period-text">{{ post.category }}</span>
+            <span class="period-text">게임 기획</span>
           {% endif %}
           {% if post.stack %}
             <span class="title-separator"> | </span>

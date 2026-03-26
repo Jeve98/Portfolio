@@ -26,7 +26,7 @@ permalink: /NGproject
           {% endif %}
           {% if post.period %}
             <span class="title-separator"> | </span>
-            <span class="period-text">{{ post.category }}</span>
+            <span class="period-text">게임 외 프로젝트</span>
           {% endif %}
           {% if post.stack %}
             <span class="title-separator"> | </span>

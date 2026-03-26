@@ -22,9 +22,11 @@ layout: default
           <span class="period-text">{{ post.period }}</span>
         {% endif %}
 
-        {% if post.period %}
+        {% if post.category %}
           <span class="title-separator"> | </span>
-          <span class="period-text">{{ post.category }}</span>
+          {% if post.category == "Game_Development" %}<span class="period-text">게임 프로젝트</span>{% endif %}
+          {% if post.category == "Game_Planning" %}<span class="period-text">게임 기획</span>{% endif %}
+          {% if post.category == "Not_Game_Development" %}<span class="period-text">게임 외 프로젝트</span>{% endif %}
         {% endif %}
 
         {% if post.stack %}
