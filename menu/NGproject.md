@@ -14,6 +14,7 @@ permalink: /NGproject
 {% if post.image %}
 <div class="thumbnail-container">
 <a href="{{ site.github.url }}{{ post.url }}">
+<span>{{ post.tags }}</span>
 <img src="{{ site.github.url }}/assets/img/{{ post.image }}" alt="{{ post.title }}">
 </a>
 </div>

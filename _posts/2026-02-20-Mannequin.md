@@ -3,7 +3,7 @@ layout: post
 title: "마네킹: 헌티드 몰"
 author: "전연욱"
 category: Game_Development
-tags: [Unity, 3D, 비대칭 PVP]
+tags: [3D, 비대칭 PVP]
 youtube:
 image:
 period: 2026-02-20 ~ 2026-03-25

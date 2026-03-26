@@ -3,7 +3,7 @@ layout: post
 title: "프라가라흐"
 author: "전연욱"
 category: Game_Development
-tags: [Phaser, Web_Game, 2D, RPG]
+tags: [Web_Game, 2D, RPG]
 youtube: q09cp5137Xc
 image: fragarach_temp.png
 period: 2025-09-30 ~ 2025-12-25

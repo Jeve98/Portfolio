@@ -10,6 +10,7 @@ permalink: /planning
 <div class="posts-container">
 <h1>
 <a href="{{ site.github.url }}{{ post.url }}">{{ post.title }}</a>
+<span>{{ post.tags }}</span>
 </h1>
 {% if post.image %}
 <div class="thumbnail-container">
