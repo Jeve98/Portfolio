@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Planning
+title: NGProject
 permalink: /NGproject
 ---
 
@@ -10,16 +10,16 @@ permalink: /NGproject
 <div class="posts-container">
 <h1>
 <a href="{{ site.github.url }}{{ post.url }}">{{ post.title }}</a>
-</h1>
-{% if post.image %}
-<div class="thumbnail-container">
-<a href="{{ site.github.url }}{{ post.url }}">
-      {% if post.tags and post.tags.size > 0 %}
+{% if post.tags and post.tags.size > 0 %}
         <span class="post">
           <span class="title-separator">|</span>
           {{ post.tags | join: ", " }}
         </span>
       {% endif %}
+</h1>
+{% if post.image %}
+<div class="thumbnail-container">
+<a href="{{ site.github.url }}{{ post.url }}">
 <img src="{{ site.github.url }}/assets/img/{{ post.image }}" alt="{{ post.title }}">
 </a>
 </div>
