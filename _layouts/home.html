@@ -22,6 +22,11 @@ layout: default
           <span class="period-text">{{ post.period }}</span>
         {% endif %}
 
+        {% if post.period %}
+          <span class="title-separator"> | </span>
+          <span class="period-text">{{ post.category }}</span>
+        {% endif %}
+
         {% if post.stack %}
           <span class="title-separator"> | </span>
           <span class="stack-icons">
@@ -34,10 +39,6 @@ layout: default
               >
             {% endfor %}
           </span>
-        {% endif %}
-
-        {% if post.period %}
-          <span class="period-text">{{ post.category }}</span>
         {% endif %}
       </div>
     {% endif %}

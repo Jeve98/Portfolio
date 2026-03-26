@@ -24,6 +24,10 @@ permalink: /NGproject
           {% if post.period %}
             <span class="period-text">{{ post.period }}</span>
           {% endif %}
+          {% if post.period %}
+            <span class="title-separator"> | </span>
+            <span class="period-text">{{ post.category }}</span>
+          {% endif %}
           {% if post.stack %}
             <span class="title-separator"> | </span>
             <span class="stack-icons">
@@ -31,9 +35,6 @@ permalink: /NGproject
                 <img src="{{ site.github.url }}/assets/icons/{{ tech }}.svg" class="stack-icon" style="width: 22px; height: 22px;">
               {% endfor %}
             </span>
-          {% endif %}
-          {% if post.period %}
-            <span class="period-text">{{ post.category }}</span>
           {% endif %}
         </div>
       {% endif %}
