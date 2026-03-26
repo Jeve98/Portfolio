@@ -50,3 +50,14 @@
   margin: 0 8px;
   color: #888;
 }
+
+.project-content {
+  /* 1. 고딕체 설정 (나눔고딕, 본고딕, 맑은 고딕 순) */
+  font-family: "Nanum Gothic", sans-serif !important;
+  
+  /* 2. 글자 크기 줄이기 (기본 16px~18px에서 15px 정도로 조정) */
+  font-size: 15px !important;
+  
+  /* 3. 가독성을 위해 줄 간격 조정 (선택 사항) */
+  line-height: 1.6;
+}
