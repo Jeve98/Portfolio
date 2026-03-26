@@ -10,7 +10,12 @@ permalink: /planning
 <div class="posts-container">
 <h1>
 <a href="{{ site.github.url }}{{ post.url }}">{{ post.title }}</a>
-<span>{{ post.tags }}</span>
+      {% if post.tags and post.tags.size > 0 %}
+        <span class="post">
+          <span class="title-separator">|</span>
+          {{ post.tags | join: ", " }}
+        </span>
+      {% endif %}
 </h1>
 {% if post.image %}
 <div class="thumbnail-container">
