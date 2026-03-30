@@ -32,11 +32,18 @@ summary: |
 
 해당 프로젝트에서는 오브젝트 간에 가려지는 경우가 많았고 vertex가 복잡한 오브젝트의 수도 많았기 때문에 개별적으로 LOD를 적용하는 것보다 ROI를 높게 가져갈 수 있으면서 더 높은 최적화 효율을 가져올 수 있을 것이라 생각되었습니다.
 
-|                             [그림 1] Occlusion Culling 적용 전                             |                            [그림 2] Occlusion Culling 적용 후                             |
-| :----------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
-| <img src="{{ site.github.url }}/assets/source/mannequin_Occlusion_Before.png" width="400"> | <img src="{{ site.github.url }}/assets/source/mannequin_Occlusion_After.png" width="400"> |
-|                                      **평균 15 FPS**                                       |                                      **평균 60 FPS**                                      |
-
+<div class="comparison-container" style="display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 10px !important; margin: 30px 0 !important;">
+  <div style="width: 48% !important; text-align: center !important;">
+    <img src="{{ site.github.url }}/assets/source/mannequin_Occlusion_Before.png" 
+         style="width: 100% !important; height: auto !important; display: inline-block !important; border-radius: 5px;">
+    <p style="font-size: 0.85em; color: #888; margin-top: 5px;">[그림 1] 적용 전 (15fps)</p>
+  </div>
+  <div style="width: 48% !important; text-align: center !important;">
+    <img src="{{ site.github.url }}/assets/source/mannequin_Occlusion_After.png" 
+         style="width: 100% !important; height: auto !important; display: inline-block !important; border-radius: 5px;">
+    <p style="font-size: 0.85em; color: #888; margin-top: 5px;">[그림 2] 적용 후 (60fps)</p>
+  </div>
+</div>
 <!-- <div style="text-align: center; margin: 40px 0;">
   <div style="display: flex; justify-content: center; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
     <div style="flex: 1; min-width: 300px; max-width: 450px;">
