@@ -12,6 +12,7 @@ summary: |
   - 살인마 진형 기능 구현
   - 상호작용 시스템 구현
   - 증강 시스템 구현
+  - Occlusion Culling을 통한 최적화
   - Jitter 완화 작업
 ---
 
@@ -20,5 +21,7 @@ summary: |
 ### 상호작용 시스템 구현
 
 ### 증강 시스템 구현
+
+### Occlusion Culling을 통한 최적화
 
 ### Jitter 완화 작업
