@@ -34,7 +34,6 @@ summary: |
 
 <div style="text-align: center; margin: 40px 0;">
   <div style="display: flex; justify-content: center; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
-    
     <div style="flex: 1; min-width: 300px; max-width: 450px;">
       <img 
         src="{{ site.github.url }}/assets/source/mannequin_Occlusion_Before.png" 
@@ -43,7 +42,6 @@ summary: |
       >
       <p style="font-size: 0.9em; color: #888; margin-top: 10px;">[그림 1] 적용 전 평균 프레임 (15fps)</p>
     </div>
-
     <div style="flex: 1; min-width: 300px; max-width: 450px;">
       <img
         src="{{ site.github.url }}/assets/source/mannequin_Occlusion_After.png"
@@ -52,7 +50,6 @@ summary: |
       >
       <p style="font-size: 0.9em; color: #888; margin-top: 10px;">[그림 2] 적용 후 평균 프레임 (60fps)</p>
     </div>
-
   </div>
 </div>
 
