@@ -44,27 +44,11 @@ summary: |
     <p style="font-size: 0.85em; color: #888; margin-top: 5px;">[그림 2] 적용 후 (60fps)</p>
   </div>
 </div>
-<!-- <div style="text-align: center; margin: 40px 0;">
-  <div style="display: flex; justify-content: center; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 300px; max-width: 450px;">
-      <img
-        src="{{ site.github.url }}/assets/source/mannequin_Occlusion_Before.png"
-        alt="Occlusion Culling 적용 전"
-        style="width: 100%; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
-      >
-      <p style="font-size: 0.9em; color: #888; margin-top: 10px;">[그림 1] 적용 전 평균 프레임 (15fps)</p>
-    </div>
-    <div style="flex: 1; min-width: 300px; max-width: 450px;">
-      <img
-        src="{{ site.github.url }}/assets/source/mannequin_Occlusion_After.png"
-        alt="Occlusion Culling 적용 후"
-        style="width: 100%; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
-      >
-      <p style="font-size: 0.9em; color: #888; margin-top: 10px;">[그림 2] 적용 후 평균 프레임 (60fps)</p>
-    </div>
-  </div>
-</div> -->
 
 그리고 Occlusion Culling을 적용한 결과, 저희는 가장 프레임 드랍이 심한 곳을 기준으로 평균 15프레임에서 평균 60프레임으로 약 300% 성능을 향상시킬 수 있었습니다.
 
 ### Jitter 완화 작업
+
+특정 증강을 획득했을 때 Jitter가 발생하는 것을 파악하여, 이를 중심으로 원인을 찾았습니다. 저희는 서버와 클라이언트가 서로 다른 시간축으로 상태를 각자 변경하고 있었기 때문에 여기에 네트워크 지연이 심할 경우 Jitter가 발생하는 것으로 판단하였습니다.
+
+이에 상태값을 RPC를 통하여 한번 더 확정 짓는 방어코드를 추가하고 증강이 적용되는 시점을 의도적으로 동기화를 확인한 후로 미룸으로써 Jitter 발생을 안정화할 수 있었습니다.
