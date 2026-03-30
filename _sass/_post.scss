@@ -62,7 +62,7 @@
   line-height: 1.6;
 }
 
-.thumbnail-container {
+.thumbnail-container-post {
   width: 100%;
   max-width: 1024px;
   margin: 0 auto 25px auto;
@@ -75,7 +75,7 @@
   position: relative;
 }
 
-.thumbnail-container img {
+.thumbnail-container-post img {
   width: 100%;
   height: 100%;
   /* 이미지가 컨테이너 비율에 맞춰 꽉 차도록 설정 */
