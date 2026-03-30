@@ -5,7 +5,7 @@ author: "전연욱"
 category: Game_Development
 tags: [3D, 비대칭 PVP]
 youtube:
-image:
+image: mannequin.png
 period: 2026-02-20 ~ 2026-03-25
 stack: [unity, photon]
 summary: |
