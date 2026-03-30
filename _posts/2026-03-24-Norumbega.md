@@ -5,7 +5,7 @@ author: "전연욱"
 category: Game_Planning
 tags: []
 youtube:
-image: norumbega.png
+image: norumbega1.png
 period: 2026-03-24 ~
 stack: []
 summary: |
