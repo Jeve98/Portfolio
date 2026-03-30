@@ -9,14 +9,14 @@ image: mannequin.png
 period: 2026-02-20 ~ 2026-03-25
 stack: [unity, photon]
 summary: |
-  - 살인마 진형 기능 구현
+  - 살인마 진영 기능 구현
   - 상호작용 시스템 구현
   - 증강 시스템 구현
   - Occlusion Culling을 통한 최적화
   - Jitter 완화 작업
 ---
 
-### 살인마 진형 기능 구현
+### 살인마 진영 기능 구현
 
 ### 상호작용 시스템 구현
 
