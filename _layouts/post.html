@@ -23,6 +23,7 @@ layout: default
 {% endif %}
 
 {% if page.youtube %}
+  <div class="video-container" id="random-video-container"></div>
   <script type="text/javascript">
     (function() {
       var rawString = '{{ page.youtube | jsonify }}'; 
