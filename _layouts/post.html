@@ -22,7 +22,7 @@ layout: default
   <p class="project-period">{{ page.period }}</p>
 {% endif %}
 
-{% if page.youtube %}
+{% if page.youtube and page.youtube.size > 0 and page.youtube[0] != "" %}
   <div class="video-container" id="random-video-container"></div>
   <script type="text/javascript">
     (function() {
