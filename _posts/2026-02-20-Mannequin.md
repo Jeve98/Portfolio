@@ -46,8 +46,7 @@ public (Vector3 position, Quaternion rotation) GetKillerSpawnData()
 
 public (Vector3 position, Quaternion rotation) GetSurvivorSpawnData(int spawnOrder)
 {
-  // 0~4 사이에서 시작점부터 순환 배부
-  int index = (SurvivorStartOffset + spawnOrder) % 5;
+  int index = (SurvivorStartOffset + spawnOrder) % 5;       // 최대 5인의 생존자
   Vector3 data = survivorSpawnPoints[SelectedSpawnIndex][index];
 
   Vector3 pos = new Vector3(data.x, 1f, data.z);
