@@ -4,7 +4,7 @@ title: "마네킹: 헌티드 몰"
 author: "전연욱"
 category: Game_Development
 tags: [3D, 비대칭 PVP]
-youtube:
+youtube: ["AoUDpxRisNE", "1wvWEE_x3T8"]
 image: mannequin.png
 period: 2026-02-20 ~ 2026-03-25
 stack: [unity, photon]
@@ -18,9 +18,46 @@ summary: |
 
 ### 살인마 진영 기능 구현
 
+기본 조작 구현
+스킬 4종 구현 (더미 설치, 전이, 교란, 위장)
+
 ### 상호작용 시스템 구현
 
+확장성을 위한 인터페이스 - 왜 인터페이스로 구현하였는지 확인 필요
+
+```
+public interface IInteractable
+{
+    string GetInteractionText(GameObject interactor);        // UI에 표시될 텍스트
+    string GetAnimationTrigger();
+    void OnInteract(GameObject gameObject);   // 상호작용 실행 시 호출
+}
+```
+
+파괴 가능 오브젝트, 담 넘기 가능 오브젝트 구현
+
 ### 증강 시스템 구현
+
+확장성을 위한 부모 class - abstract, virtual 예약어의 의의 확인 필요
+
+```
+public abstract class AbilityBase : NetworkBehaviour
+{
+    public string abilityName;
+    [TextArea] public string description;
+    public Sprite icon;
+
+    public abstract void Activate();
+
+    protected virtual void Awake()
+    {
+        // 비활성화 재확인 (방어 코드)
+        this.enabled = false;
+    }
+}
+```
+
+자기 강화형, 유틸리티형 증강 구현
 
 ### Occlusion Culling을 통한 최적화
 
@@ -30,7 +67,7 @@ summary: |
 
 반면 Occlusion culling의 경우, 특정 오브젝트가 다른 오브젝트에 의해 가려지면 렌더링에서 제외하는 방식이기 때문에 맵의 깊이가 깊어질 수록, 그리고 vertex가 복잡한 오브젝트가 다른 오브젝트에 많이 가려질 수록 효용성이 높아집니다.
 
-해당 프로젝트에서는 오브젝트 간에 가려지는 경우가 많았고 vertex가 복잡한 오브젝트의 수도 많았기 때문에 개별적으로 LOD를 적용하는 것보다 ROI를 높게 가져갈 수 있으면서 더 높은 최적화 효율을 가져올 수 있을 것이라 생각되었습니다.
+해당 프로젝트에서는 오브젝트 간에 가려지는 경우가 많았고 vertex가 복잡한 오브젝트의 수도 많았으며 약 한달이라는 짧은 프로젝트 기간을 고려하였을 때, 개별 오브젝트에 LOD를 적용하는 것보다 공간 자체에 Occlusion Culling을 적용하는 것이 비용 대비 효과가 높고 일정을 맞추기에 적합할 것이라 판단하였습니다.
 
 <div class="comparison-container" style="display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 10px !important; margin: 30px 0 !important;">
   <div style="width: 48% !important; text-align: center !important;">

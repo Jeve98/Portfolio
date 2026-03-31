@@ -22,15 +22,49 @@ layout: default
   <p class="project-period">{{ page.period }}</p>
 {% endif %}
 
-{% if page.youtube %}
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/{{ page.youtube }}?autoplay=1&mute=1&playsinline=1&loop=1&playlist={{ page.youtube }}"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
+<script type="text/javascript">
+  (function() {
+    // 1. Jekyll 출력 결과를 따옴표로 감싸서 에디터 에러 방지
+    // 만약 영상이 하나면 "ID", 여러 개면 ["ID1", "ID2"] 형태의 문자열이 됩니다.
+    var rawString = '{{ page.youtube | jsonify }}'; 
+    var videoIds = [];
+
+    try {
+      // 2. 문자열로 들어온 JSON 데이터를 자바스크립트 객체/배열로 변환
+      var parsedData = JSON.parse(rawString);
+      
+      if (Array.isArray(parsedData)) {
+        videoIds = parsedData;
+      } else if (parsedData) {
+        videoIds = [parsedData];
+      }
+    } catch (e) {
+      // 만약 데이터가 JSON 형식이 아닌 단일 문자열일 경우를 대비
+      if (rawString && rawString !== 'null' && rawString !== '""') {
+        videoIds = [rawString.replace(/"/g, '')]; 
+      }
+    }
+
+    if (videoIds.length > 0) {
+      var randomIndex = Math.floor(Math.random() * videoIds.length);
+      var selectedId = videoIds[randomIndex];
+      var container = document.getElementById('random-video-container');
+
+      if (container && selectedId) {
+        var iframe = document.createElement('iframe');
+        var videoSrc = "https://www.youtube.com/embed/" + selectedId + 
+                       "?autoplay=1&mute=1&playsinline=1&loop=1&playlist=" + selectedId;
+        
+        iframe.setAttribute('src', videoSrc);
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'autoplay; encrypted-media');
+        iframe.setAttribute('allowfullscreen', 'true');
+        
+        container.appendChild(iframe);
+      }
+    }
+  })();
+</script>
 {% elsif page.image %}
 <div class="thumbnail-container-post">
   <img src="{{ site.github.url }}/assets/img/{{ page.image }}">
