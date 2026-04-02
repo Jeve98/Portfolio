@@ -2,7 +2,44 @@
 layout: default
 ---
 
-{% for post in paginator.posts %}
+<div class="intro-header" style="padding: 60px 0; border-bottom: 2px solid #f0f0f0; margin-bottom: 50px;">
+  <h1 style="font-size: 3rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 20px;">
+    전연욱 <span style="color: #ccc;">|</span> Game Developer & Planner
+  </h1>
+  <p style="font-size: 1.25rem; color: #555; line-height: 1.8; max-width: 900px;">
+    <strong>"시스템의 견고함 위에 플레이어의 카타르시스를 설계합니다."</strong><br>
+    보스 레이드 기획부터 유니티/Phaser 엔진 기반의 기술적 구현까지, 
+    게임의 핵심 재미를 구체화하는 일에 전념하고 있습니다.
+  </p>
+</div>
+
+<div class="portfolio-grid">
+  
+  <div class="column-left" style="flex: 1;">
+    <h2 style="font-size: 2rem; margin-bottom: 40px; color: #333; text-transform: uppercase; border-bottom: 4px solid #333; display: inline-block;">
+        Planning
+    </h2>
+    {% for post in site.posts %}
+      {% if post.category == "Game_Planning" %}
+        {% include post-card.html %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="column-right" style="flex: 1;">
+    <h2 style="font-size: 2rem; margin-bottom: 40px; color: #007bff; text-transform: uppercase; border-bottom: 4px solid #007bff; display: inline-block;">
+        Projects
+    </h2>
+    {% for post in site.posts %}
+      {% if post.category == "Game_Development" or post.category == "Not_Game_Development" %}
+        {% include post-card.html %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+</div>
+
+<!-- {% for post in paginator.posts %}
   <div class="posts-container">
     <h1>
       <a href="{{ site.github.url }}{{ post.url }}">{{ post.title }}</a>
@@ -66,4 +103,4 @@ layout: default
   {% else %}
     <span class="pagination-button">{{ site.data.settings.pagination.next_page }}</span>
   {% endif %}
-</div>
+</div> -->

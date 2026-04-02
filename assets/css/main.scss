@@ -15,8 +15,11 @@ $dark-gray-color:        #333;
 $light-gray-color:       #999;
 $extra-light-gray-color: #ccc;
 
-$container-responsive-width: 768px;
-$elements-responsive-width:  30em;
+// $container-responsive-width: 768px;
+// $elements-responsive-width:  30em;
+
+$container-responsive-width: 1200px; 
+$elements-responsive-width:  45em;
 
 $icon-transition-time: .5s;
 $envelope-color:       #4285F4;
@@ -34,3 +37,44 @@ $tistory-color: #ff5a4a;
 $tistory-hover-color: darken($tistory-color, 8%);
 
 @import "-sections-dir";
+
+.container {
+    max-width: $container-responsive-width !important;
+    width: 95% !important;
+}
+
+.portfolio-grid {
+    display: flex;
+    gap: 60px; // 좌우 섹션 간격
+    margin-top: 40px;
+    align-items: flex-start;
+
+    .column-left, .column-right {
+        flex: 1;
+        min-width: 0; // 텍스트 넘침 방지
+    }
+}
+
+@media (max-width: 900px) {
+    .portfolio-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+.intro-header {
+    padding: 80px 0 60px 0;
+    border-bottom: 1px solid $extra-light-gray-color;
+    
+    h1 {
+        font-family: $sans-serif-font-family;
+        font-size: 3.2rem;
+        margin-bottom: 15px;
+    }
+    
+    p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: $body-color;
+    }
+}
