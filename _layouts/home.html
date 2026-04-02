@@ -55,10 +55,6 @@ layout: default
         <a href="{{ site.github.url }}{{ post.url }}"><img src="{{ site.github.url }}/assets/img/{{ post.image }}"></a>
       </div>
     {% endif %}
-    <!-- <p>
-      {{ post.content | strip_html | truncate: 350 }} <a href="{{ site.github.url }}{{ post.url }}">Read more</a>
-      <span class="post-date"><i class="fas fa-calendar" aria-hidden="true"></i> {{ post.date | date_to_string }} - <i class="fas fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</span>
-    </p> -->
     {% if post.period or post.stack %}
       <div class="period">
         {% if post.category %}
@@ -91,7 +87,6 @@ layout: default
     <a class="post" href="{{ site.github.url }}{{ post.url }}">Read More</a>
   </div>
 {% endfor %}
-<!-- Pagination links -->
 <div class="pagination">
   {% if paginator.next_page %}
     <a class="pagination-button pagination-active next" href="{{ site.github.url }}{{ paginator.next_page_path }}">{{ site.data.settings.pagination.previous_page }}</a>
