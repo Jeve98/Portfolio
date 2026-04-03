@@ -25,7 +25,18 @@
     {% endif %}
   </div>
 
-  <p class="post" style="font-size: 0.95rem; line-height: 1.6; color: #666;">
-    {{ post.summary | newline_to_br }}
-  </p>
+  <p class="post" style="
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    color: #666; 
+    margin-top: 10px;
+    height: 11.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    ">
+        {{ post.summary | newline_to_br }}
+    </p>
 </div>
