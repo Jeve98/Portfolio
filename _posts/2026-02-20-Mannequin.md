@@ -36,7 +36,7 @@ summary: |
 기본적인 이동 및 1인칭 시점 변경 등 조작을 구현하고 4가지 스킬을 구현하였습니다. (더미 설치, 전이, 교란, 위장)
 
 <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-  <div style="flex: 0.8; min-width: 180px; max-width: 240px;">
+  <div style="flex: 0.8;">
     <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
       <img src="{{ site.github.url }}/assets/source/mannequin/install.gif" style="width: 100%; height: auto; display: block; margin: 0;">
     </div>
@@ -49,7 +49,7 @@ summary: |
 </div>
 
 <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start; flex-direction: row-reverse;">
-  <div style="flex: 0.8; min-width: 180px; max-width: 240px;">
+  <div style="flex: 0.8;">
     <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
       <img src="{{ site.github.url }}/assets/source/mannequin/transition.gif" style="width: 100%; height: auto; display: block; margin: 0;">
     </div>
@@ -62,7 +62,7 @@ summary: |
 </div>
 
 <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-  <div style="flex: 0.8; min-width: 180px; max-width: 240px;">
+  <div style="flex: 0.8;">
     <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
       <img src="{{ site.github.url }}/assets/source/mannequin/derangement.gif" style="width: 100%; height: auto; display: block; margin: 0;">
     </div>
@@ -75,7 +75,7 @@ summary: |
 </div>
 
 <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start; flex-direction: row-reverse;">
-  <div style="flex: 0.8; min-width: 180px; max-width: 240px;">
+  <div style="flex: 0.8;">
     <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
       <img src="{{ site.github.url }}/assets/source/mannequin/camouflage.gif" style="width: 100%; height: auto; display: block; margin: 0;">
     </div>
