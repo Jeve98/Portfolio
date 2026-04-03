@@ -39,7 +39,7 @@ RPG의 주요 재미 요소는 **1. 성장 체감, 2. 제 2의 정체성(mmo), 3
 - 아이템 등급  
   <br>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 60px">
+    <div style="flex: 0.8; max-width: 95px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/normal.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
@@ -54,50 +54,62 @@ RPG의 주요 재미 요소는 **1. 성장 체감, 2. 제 2의 정체성(mmo), 3
     </div>
   </div>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 60px">
+    <div style="flex: 0.8; max-width: 95px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/wellmade.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
     </div>
     <div style="flex: 1.2;">
       <p style="margin: 0; font-size: 15px; color: #555; line-height: 1.6;">
-        <strong>수작</strong> : 무기의 경우, 1개의 스킬을 가지며 8~21 사이의 수치를 가진다. 방어구는 8~21 사이의 수치를 가진다. 해당 등급의 장신구는 화염과 물 속성을 가질 수 있다.
+        <strong>수작</strong><br>
+        무기 : 1개의 스킬을 가지며 8~21 사이의 수치를 가진다.<br>
+        방어구 : 8~21 사이의 수치를 가진다.<br>
+        장신구 : 화염과 물 속성을 가질 수 있다.
       </p>
     </div>
   </div>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 60px">
+    <div style="flex: 0.8; max-width: 95px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/luxury.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
     </div>
     <div style="flex: 1.2;">
       <p style="margin: 0; font-size: 15px; color: #555; line-height: 1.6;">
-        <strong>명품</strong> : 무기의 경우, 2개의 스킬을 가지며 34~55 사이의 수치를 가진다. 방어구는 21~55 사이의 수치를 가진다. 해당 등급의 장신구는 수작 등급의 속성을 포함하며 바람 속성을 가질 수 있다.
+        <strong>명품</strong><br>
+        무기 : 2개의 스킬을 가지며 34~55 사이의 수치를 가진다.<br>
+        방어구 : 21~55 사이의 수치를 가진다.<br>
+        장신구 : 수작 등급의 속성을 포함하며 바람 속성을 가질 수 있다.
       </p>
     </div>
   </div>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 60px">
+    <div style="flex: 0.8; max-width: 95px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/unique.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
     </div>
     <div style="flex: 1.2;">
       <p style="margin: 0; font-size: 15px; color: #555; line-height: 1.6;">
-        <strong>유일</strong> : 무기의 경우, 3개의 스킬을 가지며 89~144 사이의 수치를 가진다. 방어구는 55~89 사이의 수치를 가진다. 해당 등급의 장신구는 모든 속성을 가질 수 있다.
+        <strong>유일</strong><br>
+        무기 : 3개의 스킬을 가지며 89~144 사이의 수치를 가진다.<br>
+        방어구 : 55~89 사이의 수치를 가진다.<br>
+        장신구 : 모든 속성을 가질 수 있다.
       </p>
     </div>
   </div>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 60px">
+    <div style="flex: 0.8; max-width: 95px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/nightmare.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
     </div>
     <div style="flex: 1.2;">
       <p style="margin: 0; font-size: 15px; color: #555; line-height: 1.6;">
-        <strong>악몽</strong> : 무기의 경우, 3개의 스킬을 가지며 55~144 사이의 수치를 가진다. 또한 방어구로 획득 가능한 스탯 중 1개에 한하여 -21~8의 수치를 가진다. 방어구는 55~144 사이의 수치를 가진다. 해당 등급의 장신구는 모든 속성을 가질 수 있으며 열화된 별개의 속성을 1개 추가로 부여받는다. 만약 부여된 두 속성이 동일한 계열일 경우, 방어구로 획득 가능한 스탯 중 1개를 1~8 수치로 랜덤하게 추가로 획득한다.
+        <strong>악몽</strong><br>
+        무기 : 3개의 스킬을 가지며 55~144 사이의 수치를 가진다. 또한 방어구로 획득 가능한 스탯 중 1개에 한하여 -21~8의 수치를 가진다.<br>
+        방어구 : 55~144 사이의 수치를 가진다.<br>
+        장신구 : 모든 속성을 가질 수 있으며 열화된 별개의 속성을 1개 추가로 부여받는다. 만약 부여된 두 속성이 동일한 계열일 경우, 방어구로 획득 가능한 스탯 중 1개를 1~8 수치로 랜덤하게 추가로 획득한다.
       </p>
     </div>
   </div>
