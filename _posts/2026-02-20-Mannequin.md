@@ -35,52 +35,52 @@ summary: |
 
 기본적인 이동 및 1인칭 시점 변경 등 조작을 구현하고 4가지 스킬을 구현하였습니다. (더미 설치, 전이, 교란, 위장)
 
-<div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: center;">
-  <div style="flex: 0.5; min-width: 180px; max-width: 240px;">
+<div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
+  <div style="flex: 0.8; min-width: 180px; max-width: 240px;">
     <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
       <img src="{{ site.github.url }}/assets/source/mannequin/install.gif" style="width: 100%; height: auto; display: block; margin: 0;">
     </div>
   </div>
-  <div style="flex: 1.5;">
+  <div style="flex: 1.2;">
     <p style="margin: 0; font-size: 15px; color: #555; line-height: 1.6;">
       더미 설치 스킬의 경우, 전이, 교란에 사용되는 더미 마네킹을 맵에 설치하는 스킬로 정해진 구역에만 설치가 가능하도록 설계하였습니다. 일정 거리 내에서만 설치가 가능해야하므로 설치 가능한 구역을 리스트로 보유하였다가 스킬 사용 시에 이를 순회하며 가장 가깝고 설치 가능한 거리 미만에 있는 장소만 특정하게 하였습니다.
     </p>
   </div>
 </div>
 
-<div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: center; flex-direction: row-reverse;">
-  <div style="flex: 0.5; min-width: 180px; max-width: 240px;">
+<div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start; flex-direction: row-reverse;">
+  <div style="flex: 0.8; min-width: 180px; max-width: 240px;">
     <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
       <img src="{{ site.github.url }}/assets/source/mannequin/transition.gif" style="width: 100%; height: auto; display: block; margin: 0;">
     </div>
   </div>
-  <div style="flex: 1.5;">
+  <div style="flex: 1.2;">
     <p style="margin: 0; font-size: 15px; color: #555; line-height: 1.6;">
       전이 스킬의 경우, 더미 마네킹만을 렌더링하는 카메라를 추가하고 이를 기본 시야 위로 렌더링 되도록 설정하여 더미 마네킹을 투시하듯 보는 시점을 구현하였습니다. 이 과정에서 맵에 짙게 추가된 안개에 의해 시야가 가려지는 것을 막기 위해 쉐이더를 제작하여 적용하였습니다.
     </p>
   </div>
 </div>
 
-<div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: center;">
-  <div style="flex: 0.5; min-width: 180px; max-width: 240px;">
+<div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
+  <div style="flex: 0.8; min-width: 180px; max-width: 240px;">
     <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
       <img src="{{ site.github.url }}/assets/source/mannequin/derangement.gif" style="width: 100%; height: auto; display: block; margin: 0;">
     </div>
   </div>
-  <div style="flex: 1.5;">
+  <div style="flex: 1.2;">
     <p style="margin: 0; font-size: 15px; color: #555; line-height: 1.6;">
       교란 스킬은 전이 스킬 사용 시 출력되는 애니메이션을 보고 생존자 플레이어가 쉽게 대처할 수 있던 문제를 심리전으로 확장시키기 위해 추가하였습니다. 모든 더미 마네킹에 애니메이션을 동작시켜 지금 보이는 마네킹이 전이 스킬을 사용한 것인지 교란 스킬을 사용한 것인지 구분할 수 없도록 하였습니다.
     </p>
   </div>
 </div>
 
-<div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: center; flex-direction: row-reverse;">
-  <div style="flex: 0.5; min-width: 180px; max-width: 240px;">
+<div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start; flex-direction: row-reverse;">
+  <div style="flex: 0.8; min-width: 180px; max-width: 240px;">
     <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
       <img src="{{ site.github.url }}/assets/source/mannequin/camouflage.gif" style="width: 100%; height: auto; display: block; margin: 0;">
     </div>
   </div>
-  <div style="flex: 1.5;">
+  <div style="flex: 1.2;">
     <p style="margin: 0; font-size: 15px; color: #555; line-height: 1.6;">
       위장 스킬은 1인칭으로 진행되는 살인마의 시점 상, 다소 부족한 색적 능력을 보완할 수 있도록 3인칭 시점으로 주변을 돌아볼 수 있는 기능을 추가하였으며 인근 거리 내에 살인마가 있으면 생존자에게 재생되는 SE를 재생되지 않게 하는 기능을 가지고 있어, 특정 위치에서 더미 마네킹인 척 위장하며 생존자를 유인할 수 있는 스킬로 설계하였습니다.
     </p>
