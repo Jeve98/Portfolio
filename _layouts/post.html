@@ -2,6 +2,90 @@
 layout: default
 ---
 
+<div class="post-header-container" style="display: flex; gap: 40px; margin-bottom: 40px; align-items: flex-start;">
+  
+  <div class="post-media-box" style="flex: 1.2; min-width: 0;">
+    {% if page.youtube and page.youtube.size > 0 and page.youtube[0] != "" %}
+      <div class="video-container" id="random-video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        </div>
+    {% elsif page.image %}
+      <div class="thumbnail-container-post">
+        <img src="{{ site.github.url }}/assets/img/{{ page.image }}" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="post-info-box" style="flex: 1.8; padding-top: 10px;">
+    <h1 style="margin-top: 0; font-size: 2.2rem; margin-bottom: 15px;">{{ page.title }}</h1>
+    
+    <div class="project-spec-list" style="list-style: none; padding: 0; font-size: 1rem; line-height: 1.8;">
+      <p style="margin: 5px 0;"><strong>프로젝트 기간 :</strong> {{ page.period | default: "기재되지 않음" }}</p>
+      
+      <p style="margin: 5px 0;"><strong>팀원 구성 :</strong> {{ page.members | default: "1인 프로젝트(개인)" }}</p>
+      
+      <p style="margin: 5px 0; display: flex; align-items: center; gap: 10px;">
+        <strong>🛠 기술 스택 :</strong>
+        <span class="project-stack">
+          {% for tech in page.stack %}
+            <img src="{{ site.github.url }}/assets/icons/{{ tech }}.svg" alt="{{ tech }}" style="width: 22px; height: 22px; vertical-align: middle;">
+          {% endfor %}
+        </span>
+      </p>
+
+      <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-left: 4px solid #333; border-radius: 4px;">
+        <p style="margin-bottom: 5px; font-weight: bold;">Summary</p>
+        <p style="font-size: 0.95rem; color: #555; margin-bottom: 0;">{{ page.summary | newline_to_br }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 40px;">
+
+<section class="project-content">
+  {{ content }}
+</section>
+
+<script type="text/javascript">
+  (function() {
+    var rawString = '{{ page.youtube | jsonify }}'; 
+    var videoIds = [];
+    try {
+      var parsedData = JSON.parse(rawString);
+      if (Array.isArray(parsedData)) { videoIds = parsedData; } 
+      else if (parsedData) { videoIds = [parsedData]; }
+    } catch (e) {
+      if (rawString && rawString !== 'null' && rawString !== '""') {
+        videoIds = [rawString.replace(/"/g, '')]; 
+      }
+    }
+
+    if (videoIds.length > 0) {
+      var randomIndex = Math.floor(Math.random() * videoIds.length);
+      var selectedId = videoIds[randomIndex];
+      var container = document.getElementById('random-video-container');
+      if (container && selectedId) {
+        var iframe = document.createElement('iframe');
+        var videoSrc = "https://www.youtube.com/embed/" + selectedId + 
+                       "?autoplay=1&mute=1&playsinline=1&loop=1&playlist=" + selectedId;
+        iframe.setAttribute('src', videoSrc);
+        iframe.style.position = "absolute";
+        iframe.style.top = "0";
+        iframe.style.left = "0";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'autoplay; encrypted-media');
+        iframe.setAttribute('allowfullscreen', 'true');
+        container.appendChild(iframe);
+      }
+    }
+  })();
+</script>
+<!-- ---
+layout: default
+---
+
 <h1>
   {{ page.title }}
   {% if page.stack %}
@@ -79,4 +163,4 @@ layout: default
 
 <section class="project-content">
   {{ content }}
-</section>
+</section> -->
