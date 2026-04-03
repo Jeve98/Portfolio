@@ -2,20 +2,8 @@
 layout: default
 ---
 
-<div class="post-header-container" style="display: flex; gap: 40px; margin-bottom: 40px; align-items: flex-start;">
-  
-  <div class="post-media-box" style="flex: 1.2; min-width: 0;">
-    {% if page.youtube and page.youtube.size > 0 and page.youtube[0] != "" %}
-      <div class="video-container" id="random-video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        </div>
-    {% elsif page.image %}
-      <div class="thumbnail-container-post">
-        <img src="{{ site.github.url }}/assets/img/{{ page.image }}" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-      </div>
-    {% endif %}
-  </div>
-
-  <div class="post-info-box" style="flex: 1.8; padding-top: 10px;">
+<div class="post-header-container" style="display: flex; gap: 50px; margin-bottom: 50px; align-items: stretch;">
+  <div class="post-info-box" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 0;">
     <h1 style="margin-top: 0; font-size: 2.2rem; margin-bottom: 15px;">{{ page.title }}</h1>
     
     <div class="project-spec-list" style="list-style: none; padding: 0; font-size: 1rem; line-height: 1.8;">
@@ -37,6 +25,17 @@ layout: default
         <p style="font-size: 0.95rem; color: #555; margin-bottom: 0;">{{ page.summary | newline_to_br }}</p>
       </div>
     </div>
+  </div>
+
+  <div class="post-media-box" style="flex: 1; min-width: 0; display: flex; align-items: center;">
+    {% if page.youtube and page.youtube.size > 0 and page.youtube[0] != "" %}
+      <div class="video-container" id="random-video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        </div>
+    {% elsif page.image %}
+      <div class="thumbnail-container-post">
+        <img src="{{ site.github.url }}/assets/img/{{ page.image }}" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      </div>
+    {% endif %}
   </div>
 </div>
 
