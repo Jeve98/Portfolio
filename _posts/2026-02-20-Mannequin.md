@@ -249,16 +249,20 @@ public class SpeedUpAbility : AbilityBase
 
 해당 프로젝트에서는 오브젝트 간에 가려지는 경우가 많았고 vertex가 복잡한 오브젝트의 수도 많았으며 약 한달이라는 짧은 프로젝트 기간을 고려하였을 때, 개별 오브젝트에 LOD를 적용하는 것보다 공간 자체에 Occlusion Culling을 적용하는 것이 비용 대비 효과가 높고 일정을 맞추기에 적합할 것이라 판단하였습니다.
 
-<div class="comparison-container" style="display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 10px !important; margin: 30px 0 !important;">
-  <div style="width: 48% !important; text-align: center !important;">
-    <img src="{{ site.github.url }}/assets/source/mannequin/mannequin_Occlusion_Before.png" 
-         style="width: 100% !important; height: auto !important; display: inline-block !important; border-radius: 5px;">
-    <p style="font-size: 0.85em; color: #888; margin-top: 5px;">[그림 1] 적용 전 (15fps)</p>
+<div class="comparison-container-75" style="display: flex; justify-content: center; gap: 15px; margin: 30px auto; width: 75%; max-width: 800px;">
+  <div style="flex: 1; text-align: center;">
+    <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <img src="{{ site.github.url }}/assets/source/mannequin/mannequin_Occlusion_Before.png" 
+           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; border: none;">
+    </div>
+    <p style="font-size: 0.85em; color: #888; margin-top: 10px;">[그림 1] 적용 전 (13fps)</p>
   </div>
-  <div style="width: 48% !important; text-align: center !important;">
-    <img src="{{ site.github.url }}/assets/source/mannequin/mannequin_Occlusion_After.png" 
-         style="width: 100% !important; height: auto !important; display: inline-block !important; border-radius: 5px;">
-    <p style="font-size: 0.85em; color: #888; margin-top: 5px;">[그림 2] 적용 후 (60fps)</p>
+  <div style="flex: 1; text-align: center;">
+    <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <img src="{{ site.github.url }}/assets/source/mannequin/mannequin_Occlusion_After.png" 
+           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; border: none;">
+    </div>
+    <p style="font-size: 0.85em; color: #888; margin-top: 10px;">[그림 2] 적용 후 (63.6fps)</p>
   </div>
 </div>
 
