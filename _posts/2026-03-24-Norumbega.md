@@ -39,7 +39,7 @@ RPG의 주요 재미 요소는 **1. 성장 체감, 2. 제 2의 정체성(mmo), 3
 - 아이템 등급  
   각 아이템의 등급은 아래와 같이 구별한다.
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 100px">
+    <div style="flex: 0.8; max-width: 60px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/normal.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
@@ -51,7 +51,7 @@ RPG의 주요 재미 요소는 **1. 성장 체감, 2. 제 2의 정체성(mmo), 3
     </div>
   </div>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 100px">
+    <div style="flex: 0.8; max-width: 60px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/wellmade.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
@@ -63,7 +63,7 @@ RPG의 주요 재미 요소는 **1. 성장 체감, 2. 제 2의 정체성(mmo), 3
     </div>
   </div>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 100px">
+    <div style="flex: 0.8; max-width: 60px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/luxury.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
@@ -75,7 +75,7 @@ RPG의 주요 재미 요소는 **1. 성장 체감, 2. 제 2의 정체성(mmo), 3
     </div>
   </div>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 100px">
+    <div style="flex: 0.8; max-width: 60px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/unique.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
@@ -87,7 +87,7 @@ RPG의 주요 재미 요소는 **1. 성장 체감, 2. 제 2의 정체성(mmo), 3
     </div>
   </div>
   <div style="display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start;">
-    <div style="flex: 0.8; max-width: 100px">
+    <div style="flex: 0.8; max-width: 60px">
       <div style="line-height: 0; font-size: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
         <img src="{{ site.github.url }}/assets/source/norumbega/nightmare.png" style="width: 100%; height: auto; display: block; margin: 0;">
       </div>
