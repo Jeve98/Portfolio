@@ -7,6 +7,7 @@ tags: []
 youtube: []
 image: norumbega1.png
 period: 2026-03-24 ~
+members:
 stack: []
 summary: |
   - 기획 배경

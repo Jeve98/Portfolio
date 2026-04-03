@@ -2,38 +2,40 @@
 layout: default
 ---
 
-<div class="post-header-container" style="display: flex; gap: 50px; margin-bottom: 50px; align-items: stretch;">
-  <div class="post-info-box" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 0;">
-    <h1 style="margin-top: 0; font-size: 2.2rem; margin-bottom: 15px;">{{ page.title }}</h1>
+<div class="post-header-container" style="display: flex; gap: 40px; margin-bottom: 50px; align-items: flex-start;">
+  
+  <div class="post-info-box" style="flex: 3; min-width: 0;">
+    <h1 style="margin-top: 0; font-size: 2.5rem; margin-bottom: 15px; line-height: 1.2;">{{ page.title }}</h1>
     
-    <div class="project-spec-list" style="list-style: none; padding: 0; font-size: 1rem; line-height: 1.8;">
-      <p style="margin: 5px 0;"><strong>프로젝트 기간 :</strong> {{ page.period | default: "기재되지 않음" }}</p>
-      
-      <p style="margin: 5px 0;"><strong>팀원 구성 :</strong> {{ page.members | default: "1인 프로젝트(개인)" }}</p>
+    <div class="project-spec-list" style="list-style: none; padding: 0; font-size: 0.95rem; line-height: 1.8;">
+      <p style="margin: 5px 0;"><strong>📅 프로젝트 기간 :</strong> {{ page.period | default: "기재되지 않음" }}</p>
+      <p style="margin: 5px 0;"><strong>👥 팀원 구성 :</strong> {{ page.members | default: "개인 프로젝트" }}</p>
       
       <p style="margin: 5px 0; display: flex; align-items: center; gap: 10px;">
         <strong>🛠 기술 스택 :</strong>
         <span class="project-stack">
           {% for tech in page.stack %}
-            <img src="{{ site.github.url }}/assets/icons/{{ tech }}.svg" alt="{{ tech }}" style="width: 22px; height: 22px; vertical-align: middle;">
+            <img src="{{ site.github.url }}/assets/icons/{{ tech }}.svg" alt="{{ tech }}" style="width: 20px; height: 20px; vertical-align: middle;">
           {% endfor %}
         </span>
       </p>
 
-      <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-left: 4px solid #333; border-radius: 4px;">
-        <p style="margin-bottom: 5px; font-weight: bold;">Summary</p>
-        <p style="font-size: 0.95rem; color: #555; margin-bottom: 0;">{{ page.summary | newline_to_br }}</p>
+      <div style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-left: 4px solid #333; border-radius: 4px;">
+        <p style="margin-bottom: 8px; font-weight: bold; font-size: 1rem;">Summary</p>
+        <p style="font-size: 0.9rem; color: #555; margin-bottom: 0; line-height: 1.6;">
+          {{ page.summary | newline_to_br }}
+        </p>
       </div>
     </div>
   </div>
 
-  <div class="post-media-box" style="flex: 1; min-width: 0; display: flex; align-items: center;">
+  <div class="post-media-box" style="flex: 7; min-width: 0;">
     {% if page.youtube and page.youtube.size > 0 and page.youtube[0] != "" %}
-      <div class="video-container" id="random-video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <div class="video-container" id="random-video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
         </div>
     {% elsif page.image %}
-      <div class="thumbnail-container-post">
-        <img src="{{ site.github.url }}/assets/img/{{ page.image }}" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <div class="thumbnail-container-post" style="line-height: 0;">
+        <img src="{{ site.github.url }}/assets/img/{{ page.image }}" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
       </div>
     {% endif %}
   </div>
@@ -81,85 +83,3 @@ layout: default
     }
   })();
 </script>
-<!-- ---
-layout: default
----
-
-<h1>
-  {{ page.title }}
-  {% if page.stack %}
-    <span class="title-separator"> | </span>
-    <span class="project-stack">
-      {% for tech in page.stack %}
-        <img 
-            src="{{ site.github.url }}/assets/icons/{{ tech }}.svg" 
-            alt="{{ tech }}" 
-            class="stack-icon"
-            style="width: 26px; height: 26px;"
-          >
-      {% endfor %}
-    </span>
-  {% endif %}
-</h1>
-{% if page.period %}
-  <p class="project-period">{{ page.period }}</p>
-{% endif %}
-
-{% if page.youtube and page.youtube.size > 0 and page.youtube[0] != "" %}
-  <div class="video-container" id="random-video-container"></div>
-  <script type="text/javascript">
-    (function() {
-      var rawString = '{{ page.youtube | jsonify }}'; 
-      var videoIds = [];
-
-      try {
-        var parsedData = JSON.parse(rawString);
-        
-        if (Array.isArray(parsedData)) {
-          videoIds = parsedData;
-        } else if (parsedData) {
-          videoIds = [parsedData];
-        }
-      } catch (e) {
-        if (rawString && rawString !== 'null' && rawString !== '""') {
-          videoIds = [rawString.replace(/"/g, '')]; 
-        }
-      }
-
-      if (videoIds.length > 0) {
-        var randomIndex = Math.floor(Math.random() * videoIds.length);
-        var selectedId = videoIds[randomIndex];
-        var container = document.getElementById('random-video-container');
-
-        if (container && selectedId) {
-          var iframe = document.createElement('iframe');
-          var videoSrc = "https://www.youtube.com/embed/" + selectedId + 
-                        "?autoplay=1&mute=1&playsinline=1&loop=1&playlist=" + selectedId;
-          
-          iframe.setAttribute('src', videoSrc);
-          iframe.setAttribute('frameborder', '0');
-          iframe.setAttribute('allow', 'autoplay; encrypted-media');
-          iframe.setAttribute('allowfullscreen', 'true');
-          
-          container.appendChild(iframe);
-        }
-      }
-    })();
-  </script>
-{% elsif page.image %}
-<div class="thumbnail-container-post">
-  <img src="{{ site.github.url }}/assets/img/{{ page.image }}">
-</div>
-{% endif %}
-
-<section class="project-header">
-  {% if page.role %}
-    <p class="project-role">
-      <strong>Role:</strong> {{ page.role }}
-    </p>
-  {% endif %}
-</section>
-
-<section class="project-content">
-  {{ content }}
-</section> -->

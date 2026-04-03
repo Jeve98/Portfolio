@@ -7,6 +7,7 @@ tags: [3D, 비대칭 PVP]
 youtube: ["AoUDpxRisNE", "1wvWEE_x3T8"]
 image: mannequin1.png
 period: 2026-02-20 ~ 2026-03-25
+members: 6인
 stack: [unity, photon]
 summary: |
   - 기획
