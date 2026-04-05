@@ -26,7 +26,7 @@ summary: |
 
 <div class="comparison-container" style="display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 10px !important; margin: 30px 0 !important;">
   <div style="width: 48% !important; text-align: center !important;">
-    <img src="{{ site.github.url }}/assets/source/fumble/fragarach_pattern.png" 
+    <img src="{{ site.github.url }}/assets/source/fragarach/fragarach_pattern.png" 
          style="width: 100% !important; height: auto !important; display: inline-block !important; border-radius: 5px;">
     <p style="font-size: 0.85em; color: #888; margin-top: 5px;">보스 패턴</p>
   </div>
@@ -120,7 +120,7 @@ export function cooltime(scene, target, cool) {
 
 <div class="comparison-container" style="display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 10px !important; margin: 30px 0 !important;">
   <div style="width: 48% !important; text-align: center !important;">
-    <img src="{{ site.github.url }}/assets/source/fumble/fragarach_safe_spawn.png" 
+    <img src="{{ site.github.url }}/assets/source/fragarach/fragarach_safe_spawn.png" 
          style="width: 100% !important; height: auto !important; display: inline-block !important; border-radius: 5px;">
     <p style="font-size: 0.85em; color: #888; margin-top: 5px;">안전 배치</p>
   </div>
@@ -138,7 +138,7 @@ Phaser 엔진으로 2D 게임을 개발할 경우, 두 오브젝트를 서로 �
 
 <div class="comparison-container" style="display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 10px !important; margin: 30px 0 !important;">
   <div style="width: 48% !important; text-align: center !important;">
-    <img src="{{ site.github.url }}/assets/source/fumble/fragarach_cutscene.png" 
+    <img src="{{ site.github.url }}/assets/source/fragarach/fragarach_cutscene.png" 
          style="width: 100% !important; height: auto !important; display: inline-block !important; border-radius: 5px;">
     <p style="font-size: 0.85em; color: #888; margin-top: 5px;">컷씬</p>
   </div>
