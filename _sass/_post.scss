@@ -34,7 +34,7 @@
   position: relative;
   width: 100%;
   max-width: 1024px;
-  margin: 0 auto;
+  margin: 0 auto 25px auto;
   padding-bottom: 58.59375%; /* 1024x600 비율 */
 }
 
@@ -49,4 +49,38 @@
 .title-separator {
   margin: 0 8px;
   color: #888;
+}
+
+.project-content {
+  /* 1. 고딕체 설정 (나눔고딕, 본고딕, 맑은 고딕 순) */
+  font-family: "Nanum Gothic", sans-serif !important;
+  
+  /* 2. 글자 크기 줄이기 (기본 16px~18px에서 15px 정도로 조정) */
+  font-size: 15px !important;
+  
+  /* 3. 가독성을 위해 줄 간격 조정 (선택 사항) */
+  line-height: 1.6;
+}
+
+.thumbnail-container-post {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto 25px auto;
+  
+  /* 비디오와 동일한 비율 설정 (1024/600) */
+  aspect-ratio: 1024 / 600; 
+  
+  overflow: hidden;
+  border-radius: 5px;
+  position: relative;
+}
+
+.thumbnail-container-post img {
+  width: 100%;
+  height: 100%;
+  /* 이미지가 컨테이너 비율에 맞춰 꽉 차도록 설정 */
+  object-fit: cover;
+  object-position: 50% 50%;
+  margin: 0;
+  display: block;
 }

@@ -2,23 +2,71 @@
 layout: default
 ---
 
-{% for post in paginator.posts %}
+<div class="intro-header" style="padding: 0px 0; border-bottom: 2px solid #f0f0f0; margin-bottom: 50px;">
+  <h2 style="font-size: 2rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 20px;">
+    전연욱
+  </h2>
+  <p style="font-size: 1rem; color: #555; line-height: 1.5; max-width: 900px;">
+    <strong>"모두에게 추억으로 남을 게임을 개발합니다."</strong><br>
+    유저에게 추억을 남기는 것을 넘어, 함께 프로젝트를 진행하는 팀원에게 추억이 될 경험을 만들어가는 것을 목표로 합니다.<br>
+    <br>
+    정돈된 코드와 구조는 일하는 동안 스트레스를 줄이고 새로운 세상을 만들어가는 데에 집중할 수 있게 해줍니다.
+    또한 자연스럽게 최적화를 이끌어내며 UX를 향상시킬 수도 있습니다.<br>
+    <br>
+    그렇기에 저는 모두에게 추억이 될 수 있도록, 기본적인 설계 구조와 컨벤션을 준수하며 분석한 현재의 트렌드를 바탕으로 세계를 만들어갑니다. 
+  </p>
+</div>
+
+<div class="portfolio-grid">
+  <div class="column-left" style="flex: 1;">
+    <h2 style="font-size: 2rem; margin-bottom: 40px; color: #333; text-transform: uppercase; border-bottom: 4px solid #333; display: inline-block;">
+        게임 기획
+    </h2>
+    {% for post in site.posts %}
+      {% if post.category == "Game_Planning" %}
+        {% include post-card.html %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="column-right" style="flex: 1;">
+    <h2 style="font-size: 2rem; margin-bottom: 40px; color: #333; text-transform: uppercase; border-bottom: 4px solid #333; display: inline-block;">
+        게임 프로젝트
+    </h2>
+    {% for post in site.posts %}
+      {% if post.category == "Game_Development" %}
+        {% include post-card.html %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- {% for post in paginator.posts %}
   <div class="posts-container">
     <h1>
       <a href="{{ site.github.url }}{{ post.url }}">{{ post.title }}</a>
+      {% if post.tags and post.tags.size > 0 %}
+        <span class="post">
+          <span class="title-separator">|</span>
+          {{ post.tags | join: ", " }}
+        </span>
+      {% endif %}
     </h1>
     {% if post.image %}
       <div class="thumbnail-container">
         <a href="{{ site.github.url }}{{ post.url }}"><img src="{{ site.github.url }}/assets/img/{{ post.image }}"></a>
       </div>
     {% endif %}
-    <!-- <p>
-      {{ post.content | strip_html | truncate: 350 }} <a href="{{ site.github.url }}{{ post.url }}">Read more</a>
-      <span class="post-date"><i class="fas fa-calendar" aria-hidden="true"></i> {{ post.date | date_to_string }} - <i class="fas fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</span>
-    </p> -->
     {% if post.period or post.stack %}
       <div class="period">
+        {% if post.category %}
+          {% if post.category == "Game_Development" %}<span class="period-text">게임 프로젝트</span>{% endif %}
+          {% if post.category == "Game_Planning" %}<span class="period-text">게임 기획</span>{% endif %}
+          {% if post.category == "Not_Game_Development" %}<span class="period-text">게임 외 프로젝트</span>{% endif %}
+        {% endif %}
+
         {% if post.period %}
+          <span class="title-separator"> | </span>
           <span class="period-text">{{ post.period }}</span>
         {% endif %}
 
@@ -37,11 +85,10 @@ layout: default
         {% endif %}
       </div>
     {% endif %}
-    <p>{{ post.summary | newline_to_br }}</p>
-    <a href="{{ site.github.url }}{{ post.url }}">Read More</a>
+    <p class="post">{{ post.summary | newline_to_br }}</p>
+    <a class="post" href="{{ site.github.url }}{{ post.url }}">Read More</a>
   </div>
 {% endfor %}
-<!-- Pagination links -->
 <div class="pagination">
   {% if paginator.next_page %}
     <a class="pagination-button pagination-active next" href="{{ site.github.url }}{{ paginator.next_page_path }}">{{ site.data.settings.pagination.previous_page }}</a>
@@ -53,4 +100,4 @@ layout: default
   {% else %}
     <span class="pagination-button">{{ site.data.settings.pagination.next_page }}</span>
   {% endif %}
-</div>
+</div> -->
