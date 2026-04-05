@@ -110,4 +110,4 @@ export function cooltime(scene, target, cool) {
 
 Phaser의 경우 한 번에 모든 Scene을 로드
 
-## API 서버
+### API 서버
