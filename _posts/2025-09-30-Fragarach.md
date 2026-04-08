@@ -39,25 +39,6 @@ summary: |
 이에 해당 부분의 리팩토링 필요성이 느껴졌고, 이를 패턴 명을 Key, 쿨타임을 Value로 갖는 Dictionary를 Value로 하여 우선순위를 Key로 가지는 패턴 변수를 만들어 해결했습니다.
 
 ```javascript
-const BossPatterns = {
-  coffin: {
-    999: { key: "thunder", cool: 2.5, init: 1 },
-    1: { key: "summons", cool: 90, init: 5 },
-    2: { key: "fireshoot", cool: 30, init: 10 },
-    3: { key: "hassle", cool: 40, init: 30 },
-  },
-  vampire: {
-    999: { key: "batswarm", cool: 2.5, init: 1 },
-    1: { key: "summons", cool: 65, init: 23 },
-    2: { key: "windAoe", cool: 30, init: 15 },
-    3: { key: "reflectvoid", cool: 30, init: 30 },
-  },
-};
-```
-
-리팩토링을 거친 덕분에 새로운 패턴의 추가는 기획 의도에 맞게 우선순위, 패턴 명, 쿨타임만 해당 변수에 추가하는 것으로 충분해졌습니다. 즉, **추상화를 통해 직관적인 패턴의 추가/제거**가 가능해졌으며 개발자가 한번에 확인해야 할 코드 양을 줄이는 것으로 가독성을 높이고 휴먼 에러를 줄일 수 있었습니다.
-
-```javascript
 function CastSkill(priority, scene) {
   // 보스 이름에 맞는 패턴 테이블 사용
   const patternTable = BossPatterns[BossInstance.name];
@@ -114,6 +95,25 @@ export function cooltime(scene, target, cool) {
     BossInstance.nextPattern.push(target);
   });
 }
+```
+
+리팩토링을 거친 덕분에 새로운 패턴의 추가는 기획 의도에 맞게 우선순위, 패턴 명, 쿨타임만 해당 변수에 추가하는 것으로 충분해졌습니다. 즉, **추상화를 통해 직관적인 패턴의 추가/제거**가 가능해졌으며 개발자가 한번에 확인해야 할 코드 양을 줄이는 것으로 가독성을 높이고 휴먼 에러를 줄일 수 있었습니다.
+
+```javascript
+const BossPatterns = {
+  coffin: {
+    999: { key: "thunder", cool: 2.5, init: 1 },
+    1: { key: "summons", cool: 90, init: 5 },
+    2: { key: "fireshoot", cool: 30, init: 10 },
+    3: { key: "hassle", cool: 40, init: 30 },
+  },
+  vampire: {
+    999: { key: "batswarm", cool: 2.5, init: 1 },
+    1: { key: "summons", cool: 65, init: 23 },
+    2: { key: "windAoe", cool: 30, init: 15 },
+    3: { key: "reflectvoid", cool: 30, init: 30 },
+  },
+};
 ```
 
 ## 안전 구역 기반 스폰 시스템
