@@ -16,7 +16,7 @@ permalink: /project
 
 <style>
 /* 기존 스타일 유지 */
-.portfolio-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+.portfolio-grid { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: flex-start; }
 .column-item { flex: 0 1 calc(50% - 20px); min-width: 300px; box-sizing: border-box; }
 @media (max-width: 850px) { .column-item { flex: 1 1 100%; } }
 </style>
