@@ -8,11 +8,11 @@ layout: default
     <h1 style="margin-top: 0; font-size: 2.5rem; margin-bottom: 15px; line-height: 1.2;">{{ page.title }}</h1>
     
     <div class="project-spec-list" style="list-style: none; padding: 0; font-size: 0.95rem; line-height: 1.8;">
-      <p style="margin: 5px 0;"><strong>📅 프로젝트 기간 :</strong> {{ page.period | default: "기재되지 않음" }}</p>
-      <p style="margin: 5px 0;"><strong>👥 팀원 구성 :</strong> {{ page.members | default: "개인 프로젝트" }}</p>
+      <p style="margin: 5px 0;"><strong>프로젝트 기간 :</strong> {{ page.period | default: "기재되지 않음" }}</p>
+      <p style="margin: 5px 0;"><strong>팀원 구성 :</strong> {{ page.members | default: "개인 프로젝트" }}</p>
       
       <p style="margin: 5px 0; display: flex; align-items: center; gap: 10px;">
-        <strong>🛠 기술 스택 :</strong>
+        <strong>기술 스택 :</strong>
         <span class="project-stack">
           {% for tech in page.stack %}
             <img src="{{ site.github.url }}/assets/icons/{{ tech }}.svg" alt="{{ tech }}" style="width: 20px; height: 20px; vertical-align: middle;">
