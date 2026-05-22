@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:www.pearlabyss.com)",
       "WebSearch",
-      "WebFetch(domain:velog.io)"
+      "WebFetch(domain:velog.io)",
+      "Bash(python3 *)"
     ]
   }
 }
