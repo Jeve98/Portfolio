@@ -1,0 +1,302 @@
+---
+layout: post
+title: "헤이터"
+author: "전연욱"
+# category: Game_Development
+tags: [2D, 타워디펜스, WebGL]
+youtube: []
+image: hater.png
+period: 2026-04-22 ~ 2026-05-21
+members: 6인
+stack: [unity, spring, react]
+summary: |
+  - Thread-safe Singleton 아키텍처
+  - Task-Coroutine 브릿지 (WebGL 메인스레드 안전성)
+  - ScriptableObject 기반 데이터 아키텍처
+  - StatModifier 컴포지션 시스템
+  - 오브젝트 풀 — 부분 충전 + Pending Spawn 큐
+  - 세션 복구 시스템
+  - 적 Grade 시스템 및 Wave 인터리브 소환
+  - 서포터 유닛 전용 배치 연출
+  - 서버 통신 보안 설계
+  - 픽셀아트 렌더링 품질 최적화
+---
+
+병력 손실이 다음 전투로 이어지는 영구적 로그라이크 타워 디펜스. Unity 6 WebGL 빌드로 제공되며, Spring Boot 백엔드와 REST API로 연동된다. 게임 기획 총괄과 Unity 개발 전담을 맡았다.
+
+## Thread-safe Singleton 아키텍처
+
+매니저 클래스가 늘어나면서 각 싱글톤이 DontDestroyOnLoad 처리와 중복 인스턴스 방지를 개별적으로 구현하는 코드 중복이 발생했다. 이를 제네릭 베이스 클래스로 일원화하고, Unity의 Awake 순서에 무관하게 Instance getter가 먼저 호출되는 엣지 케이스까지 커버하도록 설계했다.
+
+```csharp
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+{
+    private static T _instance;
+    private static readonly object _lock = new object();
+
+    public static T Instance
+    {
+        get
+        {
+            lock (_lock)  // 상호 배제: 싱글톤 객체가 항상 1개만 생성되도록 보장
+            {
+                if (_instance == null)
+                {
+                    _instance = Object.FindAnyObjectByType<T>();
+
+                    if (_instance == null)
+                    {
+                        GameObject singleton = new GameObject();
+                        _instance = singleton.AddComponent<T>();
+                        singleton.name = typeof(T).ToString() + " (Singleton)";
+                        DontDestroyOnLoad(singleton);
+                    }
+                    else
+                    {
+                        // Awake보다 Instance getter가 먼저 호출된 경우 DontDestroyOnLoad 보장
+                        MonoBehaviour mb = _instance as MonoBehaviour;
+                        if (mb.transform.parent != null)
+                            mb.transform.SetParent(null);
+                        DontDestroyOnLoad(mb.gameObject);
+                    }
+                }
+                return _instance;
+            }
+        }
+    }
+}
+```
+
+`lock(_lock)`으로 멀티스레드 환경(async Task 컨티뉴에이션)에서도 인스턴스 중복 생성을 방지했다. 씬에 이미 존재하는 오브젝트를 재사용하는 경로와 런타임 생성 경로를 하나의 getter 안에서 처리하며, 부모 오브젝트 하위에 있을 때 `DontDestroyOnLoad`가 동작하지 않는 Unity 내부 제약은 `SetParent(null)`을 선행해 해결했다.
+
+## Task-Coroutine 브릿지 (WebGL 메인스레드 안전성)
+
+Unity WebGL은 멀티스레딩을 지원하지 않으나, `async Task`를 사용하면 컨티뉴에이션이 백그라운드 컨텍스트에서 실행될 수 있다. API 호출(`UnityWebRequest`)은 반드시 메인스레드에서 실행되어야 하므로, async Task를 코루틴 흐름에 안전하게 통합하는 브릿지 패턴을 구현했다.
+
+`TaskCompletionSource` 패턴으로 코루틴 내부의 `UnityWebRequest` 완료를 Task 완료로 변환하고, `WaitForTask()` 헬퍼가 매 프레임 `task.IsCompleted`를 폴링해 메인스레드를 블로킹하지 않으면서 비동기 작업이 완료될 때까지 대기한다.
+
+```csharp
+private IEnumerator DefensePreparationRoutine()
+{
+    if (!GameManager.Instance.useLocalTestData)
+    {
+        List<int> waveUnitIds = StateManager.Instance.currentEnemyGroup
+            .Select(e => e.unitId).ToList();
+
+        yield return WaitForTask(DataManager.Instance.RefreshAllyUnitsAsync());
+        yield return WaitForTask(DataManager.Instance.RefreshEnemyUnitsForWaveAsync(waveUnitIds));
+        yield return WaitForTask(DataManager.Instance.RefreshCommandersAsync(
+            StateManager.Instance.selectedCommanderIds));
+    }
+
+    currentState = GameState.Preparation;
+    yield return SceneTransitionFader.Instance.FadeToScene("Defense_logic");
+}
+
+private IEnumerator WaitForTask(Task task)
+{
+    while (!task.IsCompleted) yield return null;
+    if (task.IsFaulted)
+        Debug.LogError("[SceneFlowManager] Task 실패: " + task.Exception);
+}
+```
+
+Defense 씬 진입 전에 아군·적·지휘관 데이터를 순차적으로 갱신한 뒤 씬을 전환하므로, 데이터 누락 없이 전투가 시작된다.
+
+## ScriptableObject 기반 데이터 아키텍처
+
+유닛 스탯을 하드코딩하면 서버 밸런스 조정이 클라이언트 재빌드 없이는 반영되지 않는다. ScriptableObject로 데이터를 분리하고, API 응답으로 수치 필드만 런타임에 덮어쓰는 방식을 채택했다. 스프라이트·아이콘 등 에셋 참조는 유지된다.
+
+```csharp
+private void ApplyToAllyUnitSO(AllyUnitDto dto)
+{
+    int idx = (int)(dto.id - 1);
+    var so = allyUnitTable[idx];
+
+    // 서버 수치 필드만 덮어쓰기 — 스프라이트·아이콘 등 에셋 참조는 유지
+    so.maxHp       = dto.maxHp;
+    so.armor       = dto.armor;
+    so.attackPower = dto.attackPower;
+    so.attackRange = dto.attackRange;
+    so.attackSpeed = dto.attackSpeed;
+    so.damageType  = ParseEnum<DamageType>(dto.damageType);
+}
+
+// UPPER_CASE → PascalCase 변환 (서버 Enum 네이밍 규칙 대응)
+private static TEnum ParseEnum<TEnum>(string value) where TEnum : struct, System.Enum
+{
+    string[] parts = value.Split('_');
+    var sb = new System.Text.StringBuilder();
+    foreach (string part in parts)
+    {
+        sb.Append(char.ToUpper(part[0]));
+        if (part.Length > 1) sb.Append(part.Substring(1).ToLower());
+    }
+    System.Enum.TryParse<TEnum>(sb.ToString(), ignoreCase: true, out TEnum result);
+    return result;
+}
+```
+
+SO 인스턴스를 교체하지 않고 필드만 갱신하므로 프리팹·씬의 SO 참조가 끊기지 않는다. `TRUE_DAMAGE` → `TrueDamage` 등 서버 snake_case Enum을 Unity PascalCase로 자동 변환하며, Defense 씬 진입 시 웨이브에 등장할 적의 unitId만 개별 재호출해 전체 조회 대비 네트워크 비용을 절감한다.
+
+## StatModifier 컴포지션 시스템
+
+지휘관 패시브, 척후 버프, 웨이브 Grade 강화를 각각 별도 로직으로 구현하면 버프 적층 처리가 분산된다. 단일 `StatModifier` 구조체와 flat/percent 분리 연산으로 모든 스탯 변경을 동일 인터페이스로 처리했다.
+
+```csharp
+// StatModifier 구조
+struct StatModifier {
+    StatType statType;   // AttackPower, MaxHp, Armor, MagicResist 등 11종
+    float value;
+    bool isPercent;      // true: 곱연산 누적 / false: 합산
+}
+
+// 최종 스탯 계산
+finalValue = baseValue * (1 + percentModifiers합산) + flatModifiers합산
+
+// 지휘관 패시브 → 전투 시작 시 전체 아군 유닛에 일괄 적용
+// 척후 버프     → ScoutBuffController가 전투 시작 시 주입
+// Grade 강화    → WaveSpawner.ApplyGrade()가 소환 즉시 적용
+```
+
+버프 출처(지휘관/척후/Grade)와 무관하게 `ApplyModifier()` / `RemoveModifier()` 단일 API로 처리한다. 지휘관 교체 시 `RemoveAllCommanderEffects()` → `ApplyAllCommanderEffects()` 순서로 이전 버프를 완전히 제거하고 재적용하므로 버프 중복 적층이 발생하지 않는다.
+
+## 오브젝트 풀 — 부분 충전 + Pending Spawn 큐
+
+전체 웨이브 수만큼 풀을 선생성하면 메모리 낭비가 크고, 반납 전에 소환 요청이 몰리면 풀이 즉시 소진된다. 40% 선충전 + 반납 이벤트 기반 재소환으로 두 문제를 동시에 해결했다.
+
+```csharp
+// 풀 초기화: 전체 count의 40%만 선생성
+int poolSize = Mathf.CeilToInt(enemyData.count * poolFillRatio); // poolFillRatio = 0.4f
+
+// Get() 실패 시 pending 카운트 증가
+private void SpawnEnemy(int unitId, int grade)
+{
+    GameObject obj = enemyObjectPool.Get(unitId);
+    if (obj == null)
+    {
+        _pendingSpawn[unitId]++;  // 풀 소진 → 대기 등록
+        return;
+    }
+    ApplyGrade(obj, unitId, grade);
+}
+
+// 적 유닛 반납 시 pending 즉시 처리
+private void OnEnemyReturnedHandler(int unitId)
+{
+    if (_pendingSpawn[unitId] <= 0) return;
+    _pendingSpawn[unitId]--;
+    SpawnEnemy(unitId, _unitGrades[unitId]);  // 반납 즉시 재소환
+}
+```
+
+풀 소진 시 소환을 포기하지 않고 pending 큐에 적재해 반납 이벤트(`OnEnemyReturned`)로 즉시 드레인한다. 다음 웨이브 진입 조건에 풀 임계값 충족 여부를 포함해, 이전 웨이브 반납이 충분히 쌓인 후에만 다음 웨이브를 개시한다.
+
+## 세션 복구 시스템
+
+WebGL 게임 특성상 브라우저 새로고침 시 씬이 초기화된다. 전투 중 새로고침 후 처음 씬부터 다시 시작하면 플레이어 경험이 크게 저하된다. PlayerPrefs에 현재 GameState를 저장하고, 게임 재시작 시 해당 씬으로 자동 복원했다.
+
+```csharp
+public void CheckAndRecoverySession()
+{
+    GameState lastState = GetLastSavedState();
+    switch (lastState)
+    {
+        case GameState.Preparation:
+        case GameState.Battle:
+            // 전투 중 새로고침 → Defense_logic 씬으로 복원
+            _transitionCoroutine = StartCoroutine(RecoveryTransitionRoutine("Defense_logic"));
+            break;
+        case GameState.PostStage:
+            LoadPostStageScene();
+            break;
+        case GameState.Exploration:
+            LoadExplorationScene();
+            break;
+    }
+}
+```
+
+씬 전환 시마다 `PlayerPrefs.SetInt(LastSavedStateKey, (int)state)`로 저장한다. 패배 시 `ClearSavedStateCache()`로 세이브를 초기화해 재시작 시 처음부터 시작하도록 하며, `useLocalTestData` 환경에서는 세션 복구를 무시해 개발 편의를 유지한다.
+
+## 적 Grade 시스템 및 Wave 인터리브 소환
+
+스테이지가 진행될수록 같은 적이라도 더 강해져야 한다. 단순 스탯 배율이 아니라, 스테이지 구간별 기본 등급과 확률적 업그레이드 규칙을 Inspector에서 설정 가능하도록 데이터 기반으로 설계했다.
+
+| 스테이지 | 기본 Grade |   업그레이드 확률    | 소환 배율 |
+| :------: | :--------: | :------------------: | :-------: |
+|   0~2    |   grade0   |  10% (1종 → grade1)  |   ×0.1    |
+|   3~4    |   grade0   |  30% (1종 → grade1)  |   ×0.3    |
+|   5~7    |   grade1   | 10% (1~2종 → grade2) |   ×0.3    |
+|   8~11   |   grade1   | 30% (2종+ → grade2)  |   ×0.5    |
+|  12~14   |   grade2   |         없음         |     —     |
+
+업그레이드 대상 병종 선택에 Fisher-Yates 셔플을 사용해 모든 순열이 균등한 확률로 나타나도록 보장하며, Grade 상승 시 소환 수가 감소하는 `upgradeCountMultiplier`로 강한 적은 수가 줄어 체감 난이도를 조절한다.
+
+웨이브 소환은 `floor` 기반 분산 알고리즘으로 여러 타입의 적을 뒤섞어 소환한다. 수가 적은 타입은 수가 많은 타입 대비 더 긴 간격으로 소환되도록 설계했다.
+
+```csharp
+// 슬롯 i에서 타입 k 소환 여부
+bool shouldSpawn = Mathf.FloorToInt(i * count / maxCount)
+                 > Mathf.FloorToInt((i - 1) * count / maxCount);
+```
+
+## 서포터 유닛 전용 배치 연출
+
+서포터 유닛은 땅에서 솟아오르는 설정으로, 일반 유닛의 슬라이드 입장과 다른 전용 연출이 필요했다.
+
+- **신규 배치**: 목표 셀 아래에서 솟아오르며 sin 파형으로 좌우 진동
+- **배치 취소**: 제자리에서 지면 아래로 가라앉으며 Destroy
+- **재배치**: 현재 위치에서 가라앉기 → 목표 셀 아래로 순간이동 → 솟아오르기
+
+```csharp
+private IEnumerator SupporterRiseToTarget(GameObject unit, Vector3 target)
+{
+    while (elapsed < duration)
+    {
+        elapsed += Time.deltaTime;
+        float t = elapsed / duration;
+        // 감쇠 sin 파형: 초반 진폭 크고 착지 직전 0으로 수렴
+        float x = target.x + Mathf.Sin(t * Mathf.PI * SupporterWobbleCount)
+                            * SupporterWobbleAmplitude * (1f - t);
+        float y = Mathf.Lerp(start.y, target.y, t);
+        unit.transform.position = new Vector3(x, y, target.z);
+        yield return null;
+    }
+}
+```
+
+`SupporterWobbleCount = 14`(정수)이므로 `sin(14π) = 0` 조건이 수학적으로 보장되어 마지막 프레임에서 x값이 반드시 `target.x`에 수렴한다. `isRedeploying` 플래그를 연출 전 구간에서 유지해 Battle 상태에서 재배치 중 전투 AI가 개입하지 않도록 처리하며, 기존 `MoveToTarget` 코루틴을 건드리지 않고 독립 코루틴으로 분기해 다른 유닛 이동 로직에 영향을 주지 않는다.
+
+## 서버 통신 보안 설계
+
+WebGL 게임은 브라우저 환경이므로 치트 방지를 서버 검증에 의존하되, 클라이언트에서도 기본적인 보안 레이어를 갖췄다.
+
+- **JWT 처리**: 브라우저가 토큰 갱신을 담당하고 Unity는 매 요청 직전 jslib `GetJwtToken()`을 호출해 최신 토큰을 사용한다. 선제적 갱신 로직이 불필요하므로 구현이 단순하다.
+- **랜덤 패킷 번호**: 매 요청마다 고유한 랜덤 시퀀스 번호를 포함해 재전송 공격(Replay Attack)을 방지한다.
+- **다중 API 검증 호출**: 스테이지 클리어, 골드 획득 등 중요한 상태 변경을 단일 호출이 아닌 n회 검증 호출로 처리해 단일 요청 조작만으로 상태가 바뀌지 않도록 설계했다.
+
+```javascript
+// TokenBridge.jslib — 브라우저 localStorage에서 JWT 읽기
+mergeInto(LibraryManager.library, {
+  GetJwtToken: function () {
+    var token = localStorage.getItem("accessToken") || "";
+    var bufferSize = lengthBytesUTF8(token) + 1;
+    var buffer = _malloc(bufferSize);
+    stringToUTF8(token, buffer, bufferSize);
+    return buffer;
+  },
+});
+```
+
+## 픽셀아트 렌더링 품질 최적화
+
+스프라이트마다 원본 픽셀 크기가 달라 Unity 기본 설정으로는 화면에서 서로 다른 해상도로 렌더링되어 흐릿하게 보이거나 픽셀 크기가 불일치하는 현상이 발생했다.
+
+|    항목     |      변경 전      |      변경 후      | 이유                                      |
+| :---------: | :---------------: | :---------------: | :---------------------------------------- |
+| Filter Mode |     Bilinear      | Point (no filter) | 픽셀아트는 선형 보간 시 경계가 흐릿해짐   |
+| Compression | 기본 (손실 압축)  | None 또는 무손실  | 픽셀 경계 압축 아티팩트 제거              |
+|     PPU     | 스프라이트별 상이 |     전체 통일     | 동일한 픽셀 밀도로 렌더링되도록 기준 통일 |
+
+PPU를 전체 통일함으로써 Physics 충돌 크기와 스프라이트 렌더 크기 불일치 문제도 동시에 해결했다.
