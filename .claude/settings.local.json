@@ -4,7 +4,11 @@
       "WebFetch(domain:www.pearlabyss.com)",
       "WebSearch",
       "WebFetch(domain:velog.io)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(python -c \"import pptx; print\\('pptx available'\\)\")",
+      "Bash(pip install *)",
+      "Bash(python *)",
+      "Bash(dir *)"
     ]
   }
 }
