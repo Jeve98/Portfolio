@@ -96,22 +96,19 @@ ssafy: 본 프로젝트는 삼성 청년 SW·AI 아카데미(SSAFY)에서 진행
 기존에는 각 플레이어의 물리적 위치인 transform.position의 세 값(x, y, z)와 해당 위치에서 플레이어가 바라보는 transform.rotation의 세 값(x, y, z)를 각각 전송하여 스폰하였습니다. 하지만 position.y, rotation.x, rotation.z의 경우 고정값으로 전송되었으므로, 이를 제외하고 실제 변경되는 값을 하나로 묶어 전송되도록 데이터 구조를 최적화하여 스폰 시에 필요한 네트워크 트래픽을 절반으로 감소할 수 있었습니다.
 
 ```csharp
-public (Vector3 position, Quaternion rotation) GetKillerSpawnData()
+public (Vector3 dataSet) GetKillerSpawnData()
 {
   Vector3 data = killerSpawnPoints[SelectedSpawnIndex];
-  Vector3 pos = new Vector3(data.x, 108f, data.z);
-  Quaternion rot = Quaternion.Euler(0, data.y, 0);
-  return (pos, rot);
+
+  return (data);
 }
 
-public (Vector3 position, Quaternion rotation) GetSurvivorSpawnData(int spawnOrder)
+public (Vector3 dataSet) GetSurvivorSpawnData(int spawnOrder)
 {
   int index = (SurvivorStartOffset + spawnOrder) % 5;       // 최대 5인의 생존자
   Vector3 data = survivorSpawnPoints[SelectedSpawnIndex][index];
 
-  Vector3 pos = new Vector3(data.x, 1f, data.z);
-  Quaternion rot = Quaternion.Euler(0, data.y, 0);
-  return (pos, rot);
+  return (data);
 }
 ```
 
@@ -123,26 +120,20 @@ public void PlayerJoined(PlayerRef player)
   if (!Runner.IsServer) return;
   if (SpawnManager.Instance == null || SpawnManager.Instance.SelectedSpawnIndex == -1) return;
 
-  Vector3 spawnPos;
-  Quaternion spawnRot;
   NetworkObject prefabToSpawn;
   if (player == Runner.LocalPlayer)
   {
-    var data = SpawnManager.Instance.GetKillerSpawnData();
-    spawnPos = data.position;
-    spawnRot = data.rotation;
+    var dataSet = SpawnManager.Instance.GetKillerSpawnData();
     prefabToSpawn = killerPrefab;
   }
   else
   {
-    var data = SpawnManager.Instance.GetSurvivorSpawnData(_survivorSpawnCount);
-    spawnPos = data.position;
-    spawnRot = data.rotation;
+    var dataSet = SpawnManager.Instance.GetSurvivorSpawnData(_survivorSpawnCount);
     _survivorSpawnCount++;
     prefabToSpawn = survivorPrefab;
   }
 
-  Runner.Spawn(prefabToSpawn, spawnPos, spawnRot, player);
+  Runner.Spawn(prefabToSpawn, dataSet, player);
 }
 ```
 
