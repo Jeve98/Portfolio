@@ -7,8 +7,8 @@ disqus:
 google-ID: ""
 
 menu:
-  - { name: "기획", url: "planning.html" }
-  - { name: "프로젝트", url: "project.html" }
+  - { name: "게임 기획", url: "planning.html" }
+  - { name: "게임 프로젝트", url: "project.html" }
   # - { name: "Not Game", url: "NGproject.html" }
 
 # Available social icons are powered by Font Awesome, so you can use any icon that they offer
