@@ -8,7 +8,7 @@ permalink: /planning
   <h2 style="font-size: 2rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 20px;">
     전연욱
   </h2>
-  <p style="font-size: 1rem; color: #555; line-height: 1.5; max-width: 900px;">
+  <p style="font-size: 1rem; color: #555; line-height: 1.5; max-width: 1000px;">
     <strong>"트렌드를 읽고 시스템을 짜며, 플레이어의 추억을 만듭니다."</strong><br>
     장르 트렌드 분석을 기반으로 시스템을 설계하고 컨텐츠를 기획합니다.<br>
     <br>
