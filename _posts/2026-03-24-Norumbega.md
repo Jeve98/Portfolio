@@ -6,7 +6,7 @@ category: Game_Planning
 tags: []
 youtube: []
 image: norumbega1.png
-period: 2026-03-24 ~
+period: 2026-03-24 ~ 2026-03-29
 members:
 stack: []
 summary: |
