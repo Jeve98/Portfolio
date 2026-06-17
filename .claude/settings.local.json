@@ -12,7 +12,11 @@
       "Bash(Get-Content \"C:\\\\Users\\\\SSAFY\\\\Desktop\\\\Portfolio\\\\_posts\\\\2026-01-06-Fumble.md\" -TotalCount 20)",
       "Bash(Write-Host \"---\")",
       "Bash(Get-Content \"C:\\\\Users\\\\SSAFY\\\\Desktop\\\\Portfolio\\\\_posts\\\\2026-02-20-Mannequin.md\" -TotalCount 20)",
-      "Bash(Get-Content \"C:\\\\Users\\\\SSAFY\\\\Desktop\\\\Portfolio\\\\_posts\\\\2026-03-24-Norumbega.md\" -TotalCount 20)"
+      "Bash(Get-Content \"C:\\\\Users\\\\SSAFY\\\\Desktop\\\\Portfolio\\\\_posts\\\\2026-03-24-Norumbega.md\" -TotalCount 20)",
+      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)",
+      "Read(//tmp/**)",
+      "Bash(pip show *)",
+      "Bash(pip list *)"
     ]
   }
 }
