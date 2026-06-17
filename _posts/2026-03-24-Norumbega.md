@@ -106,12 +106,12 @@ RPG의 핵심 재미 요소를 다음 5가지로 정의하고, 각 요소의 현
 
 ### 아이템 등급
 
-| 등급                                                                                                                                                                                                                                                                                               | 무기 스킬 수 | 무기 수치 범위 | 방어구 수치 범위 | 장신구 가용 속성             |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | -------------- | ---------------- | ---------------------------- |
-| <span style="display:inline-block;text-align:center;"><img src="{{ site.github.url }}/assets/source/norumbega/normal.png" width="50" style="border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:block;margin:0 auto;"><span style="font-size:0.85em;color:#888;">노멀</span></span>    | 1개          | 1~5            | 1~5              | 없음                         |
+|                                                                                                                                                등급                                                                                                                                                | 무기 스킬 수 | 무기 수치 범위 | 방어구 수치 범위 | 장신구 가용 속성             |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------ | -------------- | ---------------- | ---------------------------- |
+|  <span style="display:inline-block;text-align:center;"><img src="{{ site.github.url }}/assets/source/norumbega/normal.png" width="50" style="border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:block;margin:0 auto;"><span style="font-size:0.85em;color:#888;">노멀</span></span>   | 1개          | 1~5            | 1~5              | 없음                         |
 | <span style="display:inline-block;text-align:center;"><img src="{{ site.github.url }}/assets/source/norumbega/wellmade.png" width="50" style="border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:block;margin:0 auto;"><span style="font-size:0.85em;color:#888;">수작</span></span>  | 1개          | 8~21           | 8~21             | 화염, 물                     |
-| <span style="display:inline-block;text-align:center;"><img src="{{ site.github.url }}/assets/source/norumbega/luxury.png" width="50" style="border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:block;margin:0 auto;"><span style="font-size:0.85em;color:#888;">명품</span></span>    | 2개          | 34~55          | 21~55            | 화염, 물, 바람               |
-| <span style="display:inline-block;text-align:center;"><img src="{{ site.github.url }}/assets/source/norumbega/unique.png" width="50" style="border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:block;margin:0 auto;"><span style="font-size:0.85em;color:#888;">유일</span></span>    | 3개          | 89~144         | 55~89            | 전 속성                      |
+|  <span style="display:inline-block;text-align:center;"><img src="{{ site.github.url }}/assets/source/norumbega/luxury.png" width="50" style="border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:block;margin:0 auto;"><span style="font-size:0.85em;color:#888;">명품</span></span>   | 2개          | 34~55          | 21~55            | 화염, 물, 바람               |
+|  <span style="display:inline-block;text-align:center;"><img src="{{ site.github.url }}/assets/source/norumbega/unique.png" width="50" style="border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:block;margin:0 auto;"><span style="font-size:0.85em;color:#888;">유일</span></span>   | 3개          | 89~144         | 55~89            | 전 속성                      |
 | <span style="display:inline-block;text-align:center;"><img src="{{ site.github.url }}/assets/source/norumbega/nightmare.png" width="50" style="border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:block;margin:0 auto;"><span style="font-size:0.85em;color:#888;">악몽</span></span> | 3개          | 55~144         | 55~144           | 전 속성 + 열화 속성 1개 추가 |
 
 ※ 악몽 등급 무기는 방어구 계열 패시브 스탯 중 1개를 -21~8 수치로 추가 보유  
@@ -196,7 +196,7 @@ RPG의 핵심 재미 요소를 다음 5가지로 정의하고, 각 요소의 현
 
 단기적인 성장 체감 및 카타르시스만으로는 장기적인 유저의 플레이를 이끌어낼 수 없으므로 아래 전략을 기반으로 이를 보완한다.
 
-### 1. 빌드형 체험 강화
+### 빌드형 체험 강화
 
 장신구 속성 간 시너지 효과를 추가하여 빌드의 다양성을 확장하고 이를 기반으로 다양한 무기 스킬과 시너지를 조합하는 빌드형 체험을 강화한다.
 
@@ -205,18 +205,18 @@ RPG의 핵심 재미 요소를 다음 5가지로 정의하고, 각 요소의 현
 - 화염 + 바람 : 마지막으로 타격한 몬스터에게 현재 다른 몬스터에게 적용 중인 모든 도트 데미지를 집중 적용
 - 빛 + 어둠 : 명중률 하락 디버프가 타격 받지 않은 몬스터에게도 전염
 
-### 2. 시즌제
+### 시즌제
 
 | 항목        | 내용                                        |
 | ----------- | ------------------------------------------- |
 | 시즌별 변화 | 신규 무기 스킬, 장신구 속성, 시즌 보스 추가 |
 | 목적        | 동일 플레이 사이클 내 새로운 체험 제공      |
 
-### 3. 보스 패턴 다변화
+### 보스 패턴 다변화
 
 동일 보스라도 난이도별 신규 패턴을 추가하는 것으로 상위 난이도는 하위 난이도와 다른 보스를 상대하는 느낌을 제공하여 도전 동기를 지속시킨다.
 
-### 4. 도감 컨텐츠
+### 도감 컨텐츠
 
 각 시즌 최고 난이도 보스에서 낮은 확률로 추가 드랍되는 도감 아이템을 추가한다.
 
