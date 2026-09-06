@@ -16,7 +16,11 @@
       "Bash(PYTHONIOENCODING=utf-8 python -c ' *)",
       "Read(//tmp/**)",
       "Bash(pip show *)",
-      "Bash(pip list *)"
+      "Bash(pip list *)",
+      "WebFetch(domain:www.rallit.com)",
+      "WebFetch(domain:estfamily.career.greetinghr.com)",
+      "WebFetch(domain:estsoft.ai)",
+      "WebFetch(domain:www.inven.co.kr)"
     ]
   }
 }
